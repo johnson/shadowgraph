@@ -84,9 +84,9 @@ Then change your pw
 
 == Can you help?
 
-  * Testing
-  * i18n
-  * UI
+* Testing
+* i18n
+* UI
 
 == Helpful links
 

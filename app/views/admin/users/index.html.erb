@@ -1,0 +1,40 @@
+<!-- 管理用户 首页 开始 -->
+<h2>管理用户</h2>
+<hr />
+
+<div class="prepend-1 span-18">
+<%= link_to "全部用户", admin_users_path %>
+<%= link_to "待审核用户", admin_users_path(:state => 'pending') %>
+<%= link_to "正常用户", admin_users_path(:state => 'normal') %>
+<%= link_to "停权用户", admin_users_path(:state => 'suspended') %>
+<%= link_to "已删除用户", admin_users_path(:state => 'soft_deleted') %>
+</div>
+<hr class="space"/>
+<hr />
+
+<div class="span-19"><%= will_paginate @users %></div>
+<hr class="space"/>
+
+<% @users.each do |user| %>
+<div class="span-2 center">
+  <a href = "<%= admin_user_url(user) %>" class = "user_thumb">
+    <%= avatar_for user %>
+  </a>
+</div>
+<div class="span-3">
+  <%= t("login_account") %>: <%= link_to user.login, admin_user_path(user) %><br />
+  <span>状态</span>: <%= t(user.state) %>
+</div>
+<div class="span-7">
+  <% video=user.videos.last %>
+  <%= t("last_video") %>: <%= link_to(video.title, admin_video_path(video)) if video %><br />
+  <span><%= t("uploaded_at") %></span>: <%= video.created_at.to_s(:db) if video %>
+</div>
+<div class="span-4 button">
+  <%= link_to t("admin_edit_user_profile"), edit_admin_user_path(user) %>
+</div>
+<hr />
+<% end %>
+
+<div class="span-19"><%= will_paginate @users, :class => "pagination page-wide" %></div>
+<!-- 管理用户 首页 结束 -->

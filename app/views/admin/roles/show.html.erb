@@ -1,0 +1,64 @@
+<!-- 管理页面 角色详细信息显示 开始 -->
+<div class="span-4"><h2>角色详细信息</h2></div>
+<div class="button">
+  <%= link_to "编辑管理角色", edit_admin_role_path(@role) %>
+</div>
+<hr />
+
+<% if false %>
+<div class="prepend-1 span-18">
+<%= link_to "全部角色", admin_roles_path %>
+<%= link_to "待审核角色", admin_roles_path(:state => 'pending') %>
+<%= link_to "已审核角色", admin_roles_path(:state => 'audited') %>
+<%= link_to "进入编码队列角色", admin_roles_path(:state => 'queued_up') %>
+<%= link_to "编码中角色", admin_roles_path(:state => 'converting') %>
+<%= link_to "已编码角色", admin_roles_path(:state => 'converted') %>
+<%= link_to "编码出错角色", admin_roles_path(:state => 'error') %>
+<%= link_to "已取消角色", admin_roles_path(:state => 'canceled') %>
+<%= link_to "已删除角色", admin_roles_path(:state => 'soft_deleted') %>
+</div>
+<hr class="space"/>
+<hr />
+<% end %>
+
+<h3 class="alt">角色名：</h3>
+<%= @role.name %>
+
+<hr class="space"/>
+
+<!-- 角色内用户列表栏 开始 -->
+<div class="span-8">
+  <h3 class="alt">具有该角色的用户：</h3>
+  <% @users_in_role.each do |user| %>
+    <div class="span-4 alt"><%= link_to user.login, admin_user_path(user) %></div>
+    <div class="span-3 button">
+    <%= link_to("移除出该角色", mv_admin_role_user_path(@role,user), 
+                :confirm => '移除后用户将不具有该角色的权限，将用户移除出该角色？', :method => :delete) %>  
+    </div>
+  <hr class="space"/>
+  <hr /> 
+  <% end %>  
+</div>
+<!-- 角色内用户列表栏 结束 -->
+
+<!-- 角色外用户列表栏 开始 -->
+<div class="span-9 lcolborder">
+  <h3 class="alt">不具有该角色的用户：</h3>  
+  <% @users_out_role.each do |user| %>
+    <div class="span-5 alt"><%= link_to user.login, admin_user_path(user) %></div>
+    <div class="span-3 button">
+      <%= link_to("赋予该角色", add_admin_role_user_path(@role,user), :method => :put) %>  
+    </div>
+  <hr class="space"/>
+  <hr /> 
+  <% end %>
+<%= will_paginate @users_out_role %>    
+</div>
+<!-- 角色外用户列表栏 结束 -->
+
+<hr class="space"/>
+<hr />  
+<div class="button">
+  <%= link_to "编辑管理角色", edit_admin_role_path(@role) %>
+</div>
+<!-- 管理页面 角色详细信息显示 结束 -->	

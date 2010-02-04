@@ -1,0 +1,207 @@
+# Chinese (China) translations for Ruby on Rails
+# by tsechingho (http://github.com/tsechingho)
+
+zh-CN:
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b%d日"
+      long: "%Y年%b%d日"
+    day_names: [星期天, 星期一, 星期二, 星期三, 星期四, 星期五, 星期六]
+    abbr_day_names: [日, 一, 二, 三, 四, 五, 六]
+    month_names: [~, 一月, 二月, 三月, 四月, 五月, 六月, 七月, 八月, 九月, 十月, 十一月, 十二月]
+    abbr_month_names: [~, 1月, 2月, 3月, 4月, 5月, 6月, 7月, 8月, 9月, 10月, 11月, 12月]
+    order: [ :year, :month, :day ]
+
+  time:
+    formats:
+      default: "%Y年%b%d日 %A %H:%M:%S %Z"
+      short: "%b%d日 %H:%M"
+      long: "%Y年%b%d日 %H:%M"
+    am: "上午"
+    pm: "下午"
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "半分钟"
+      less_than_x_seconds:
+        one: "一秒内"
+        other: "少于 {{count}} 秒"
+      x_seconds:
+        one: "一秒"
+        other: "{{count}} 秒"
+      less_than_x_minutes:
+        one: "一分钟内"
+        other: "少于 {{count}} 分钟"
+      x_minutes:
+        one: "一分钟"
+        other: "{{count}} 分钟"
+      about_x_hours:
+        one: "大约一小时"
+        other: "大约 {{count}} 小时"
+      x_days:
+        one: "一天"
+        other: "{{count}} 天"
+      about_x_months:
+        one: "大约一个月"
+        other: "大约 {{count}} 个月"
+      x_months:
+        one: "一个月"
+        other: "{{count}} 个月"
+      about_x_years:
+        one: "大约一年"
+        other: "大约 {{count}} 年"
+      over_x_years:
+        one: "一年以上"
+        other: "{{count}} 年以上"
+
+  number:
+    format:
+      separator: "."
+      delimiter: ","
+      precision: 3
+    currency:
+      format:
+        format: "%u %n"
+        unit: "CNY"
+        separator: "."
+        delimiter: ","
+        precision: 2
+    percentage:
+      format:
+        delimiter: ""
+    precision:
+      format:
+        delimiter: ""
+    human:
+      format:
+        delimiter: ""
+        precision: 1
+      storage_units: [Bytes, KB, MB, GB, TB]
+
+  support:
+    array:
+      sentence_connector: "和"
+      skip_last_comma: true
+
+  activerecord:
+    errors:
+      template:
+        header:
+          one: "有 1 个错误发生导致「{{model}}」无法被保存。"
+          other: "有 {{count}} 个错误发生导致「{{model}}」无法被保存。"
+        body: "如下字段出现错误："
+      messages:
+        inclusion: "不包含于列表中"
+        exclusion: "是保留关键字"
+        invalid: "是无效的"
+        confirmation: "与确认值不匹配"
+        accepted: "必须是可被接受的"
+        empty: "不能留空"
+        blank: "不能为空字符"
+        too_long: "过长（最长为 {{count}} 个字符）"
+        too_short: "过短（最短为 {{count}} 个字符）"
+        wrong_length: "长度非法（必须为 {{count}} 个字符）"
+        taken: "已经被使用"
+        not_a_number: "不是数字"
+        greater_than: "必须大于 {{count}}"
+        greater_than_or_equal_to: "必须大于或等于 {{count}}"
+        equal_to: "必须等于 {{count}}"
+        less_than: "必须小于 {{count}}"
+        less_than_or_equal_to: "必须小于或等于 {{count}}"
+        odd: "必须为单数"
+        even: "必须为双数"
+
+  welcome: "欢迎你"
+  user: "用户"
+  uploader: "上传者"
+  login: "登陆"
+  email: "电子邮件"
+  register: "注册"
+  login_account: "登陆账号"
+  password: "密码"
+  change_password: "修改密码"
+  confirm_password: "确认密码"
+  remember_me: "记住登陆状态"
+  notice: "注意"
+  error: "出错啦"
+  login_successful: "成功登陆"
+  logout_successful: "成功退出"
+  confirm_logout: "真要登出吗?"
+  login_count: "登陆次数"
+  last_request_at: "上次请求于"
+  last_login_at: "上次登陆于"
+  current_login_at: "本次登陆于"
+  last_login_ip: "上次登陆IP地址"
+  current_login_ip: "本次登陆IP地址"
+  first_login: "这是第一次登陆"
+  last_video: "最近视频"  
+  "’s": " 的"  
+  homepage: "主页"  
+  user_profile: "用户信息"  
+  update_user_profile: "更新用户信息"  
+  edit_user_profile: "修改用户信息"  
+  admin_edit_user_profile: "审核、编辑用户"  
+  user_has_no_video: "用户尚无视频，以下是其他用户的视频"  
+  normal: "正常"  
+  suspend: "停权"  
+  suspended: "被停权"  
+  unsuspend: "复权"  
+
+  publiced: "已发布"
+  pending: "待处理"
+  audited: "已审核"
+  no_encoding: "不需编码"
+  queued_up: "已进入编码队列"
+  converting: "正在编码中"
+  converted: "已编码"
+  # error: "编码出错"
+  canceled: "已取消"
+  soft_deleted: "已删除"
+  
+  title: "标题"  
+  description: "描述"  
+  uploaded_at: "上传于"  
+  video_player: "播放器"  
+  video_container: "视频封装"  
+  video_width: "宽"  
+  video_height: "高"  
+  video_codec: "视频编码解码器"  
+  video_bitrate: "视频码率"  
+  fps: "视频帧率"  
+  audio_codec: "音频编码解码器"  
+  audio_bitrate: "音频码率"  
+  audio_sample_rate: "音频采样率" 
+  position: "位置"
+  video_list: "视频列表"
+  play_video: "播放视频"
+  edit_video: "管理视频"
+  encode_error: "视频编码错误，请联系管理员"
+  video_pending: "视频尚未审核通过"
+  video_processing: "视频正在处理中，稍后再试"
+
+  return: "返回"
+  previous_page: "上一页"
+  next_page: "下一页"
+
+#   authlogic:
+#     error_messages:
+#       login_blank: "不能为空"
+#       login_not_found: "不存在"
+#       login_invalid: "只能为字母，数字和.-_@"
+#       consecutive_failed_logins_limit_exceeded: "超过持续登陆出错限制，账号被禁用"
+#       email_invalid: "不是有效email地址"
+#       password_blank: "不能为空"
+#       password_invalid: "无效"
+#       not_active: "你的账号没有激活"
+#       not_confirmed: "你的账号没被确认"
+#       not_approved: "你的账号没被认可"
+#       no_authentication_details: "你没有提供任何认证的信息"
+#     models:
+#       user_session: "用户会话"
+#     attributes:
+#       user_session: "用户会话"
+#         login: "登陆名"
+#         email: "email"
+#         passwword: "密码"
+#         remember_me: "记住登陆状态"

@@ -1,0 +1,29 @@
+<!-- 视频列表 开始 -->
+<h2><%= t("video_list") %></h2>
+<hr />
+
+<div class="span-24"><%= will_paginate @videos %></div>
+<hr class="space"/>
+
+<% @videos.each do |video| %>
+<div class="prepend-1 span-5">
+  <div class="video_small">  
+    <%= link_to (image_tag video.asset.url(:small), :alt => video.filename), 
+                video_path(video) %>
+    <br />
+    <b>
+    <%= link_to truncate(video.title, 28), video_path(video), :class => "video_title" %>
+    </b>                
+  </div>
+  <div class="prepend-1 alt">
+  <%= link_to video.user.login, user_path(video.user) %> <%= t("uploaded_at") %> :
+  <br />  
+  <%= video.created_at.to_s(:db) %>
+  </div>
+  <hr class="space" />  
+</div>
+<% end %>
+
+<div class="span-24"><%= will_paginate @videos, :class => "pagination page-wide" %></div>
+<hr class="space"/>
+<!-- 视频列表 结束 -->

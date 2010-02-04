@@ -1,0 +1,135 @@
+*{
+	text-shadow: white 1px 1px 1px;	
+}
+
+div.lborder {padding-left:4px;margin-left:5px;border-left:1px solid #eee;}
+div.lcolborder {padding-left:24px;margin-left:25px;border-left:1px solid #eee;}
+.center{
+	text-align:center;margin:auto;
+}
+
+#header
+{
+/*background: #f07c01 none repeat scroll 0 0;*/
+/*  background-image: url(/images/header.png);*/
+/*  padding: 10px 4%;*/
+/*  border-bottom: 3px solid #5555a5;*/
+/*	height: 75px;
+  padding-bottom: 0;
+  padding-top: 8px;*/
+  display:inline;
+}
+
+.logo{
+	font-family: "Courier New", Courier, mono;
+	font-weight: bold;
+}
+
+.notice{display:inline;color:green;}
+.error{display:inline;color:red;}
+
+#logo
+{
+/*  margin-top: 20px;
+  width: 400px;*/
+}
+
+#logo a
+{
+	color: #c8c8c8;
+/*  width: 223px;
+  height: 33px;*/
+	font-weight: bold;
+	font-size: 25px;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#logo a:hover
+{
+/*  background-color: #8c8cfc;
+  border: 2px solid #222222;
+  color: #5050ff;
+  color: red;*/
+}
+
+#footer{
+  text-align: right;
+}
+
+
+.video_title{
+overflow: hidden;
+text-overflow: ellipsis;
+-o-text-overflow: ellipsis;
+white-space: nowrap;
+/*width: 100%;*/
+}
+
+.video_small{
+	text-align:center;
+	margin:auto;
+}
+
+.pagination {
+  padding: 3px;
+  margin: 3px;
+}
+.pagination a {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #aaaadd;
+  text-decoration: none;
+  color: #000099;
+}
+.pagination a:hover, .pagination a:active {
+  border: 1px solid #000099;
+  color: #000;
+}
+.pagination span.current {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #000099;
+  font-weight: bold;
+  background-color: #A7A37E;
+  color: #FFF;
+}
+.pagination span.disabled {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #eee;
+  color: #ddd;
+}
+
+.button {
+  padding: 3px;
+  margin: 3px;
+  text-align:right;
+}
+.button a {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #aaaadd;
+  text-decoration: none;
+  color: #000099;
+}
+.button a:hover, .pagination a:active {
+  border: 1px solid #000099;
+  color: #000;
+}
+.button span.current {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #000099;
+  font-weight: bold;
+  background-color: #A7A37E;
+  color: #FFF;
+}
+.button span.disabled {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #eee;
+  color: #ddd;
+}
+

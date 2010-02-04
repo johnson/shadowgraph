@@ -1,0 +1,15 @@
+.project
+.idea
+.metadata/*
+_notes/*
+_notes
+.DS_Store
+Thumbs.db
+log/*
+*~
+tmp/*
+db/*.sqlite3
+config/database.yml
+config/app_config.yml
+assets
+bk

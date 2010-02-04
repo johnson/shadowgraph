@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  player: MyString
+  width: 1
+  height: 1
+  video_codec: MyString
+  fps: 
+  audio_codec: MyString
+  audio_bitrate: 1
+  audio_sample_rate: 1
+  position: MyString
+
+two:
+  title: MyString
+  player: MyString
+  width: 1
+  height: 1
+  video_codec: MyString
+  fps: 
+  audio_codec: MyString
+  audio_bitrate: 1
+  audio_sample_rate: 1
+  position: MyString

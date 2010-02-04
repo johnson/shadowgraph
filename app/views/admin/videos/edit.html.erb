@@ -1,0 +1,120 @@
+<!-- 审核、编辑视频 开始 -->
+<h2>审核、编辑视频</h2>
+<hr />
+
+<div class="span-12">
+<%= link_to "返回该视频显示页", video_path(@video) %> | 
+<%= link_to "返回该视频管理首页", admin_video_path(@video) %>
+</div>
+<% if current_user && current_user.has_role?('owner') %>
+<div class="button">
+  <%= link_to("物理删除该视频", rm_admin_video_path(@video), 
+              :confirm => '物理删除该视频？删除后不可恢复！', :method => :delete) %>
+</div>
+<% end %>
+<hr class="space" />
+
+<div class="span-12">
+<% form_for @video, :url => admin_video_path do |f| %>
+  <%= f.error_messages %>
+  <%#= render :partial => "form", :object => f %>
+  <h3 class="alt"><%= f.label :title,'标题' %>: </h3>
+  <%= f.text_field :title, :class => 'title span-10' %>
+  <hr class="space" />
+  
+  <%= link_to @video.user.login, @video.user %> 上传于 <%= @video.created_at.to_s(:db) %>
+  <hr class="space" />  
+  
+  <h3 class="alt">当前状态: </h3>
+  <%= t(@video.state) %>
+  <hr class="space" />  
+  
+  <h3 class="alt">视频截图:</h3>
+  <%= image_tag @video.asset.url(:medium), :alt => @video.filename %>
+  <hr class="space" />  
+  
+  <h3 class="alt"><%= f.label :description,'描述' %>:</h3>
+  <%= f.text_area :description, :class => "span-10" %> 
+  
+  <% if false %>
+  <h3 class="alt"><%= f.label :tags %>: </h3>
+  <%= f.text_field :tag_list %>
+  <% end %>
+  
+  <div class="span-12">
+  <%= f.submit "提交更新" %> |
+  <% if @video.state=="pending" %>
+  <%= f.submit "审核通过" %> | 
+  <% elsif @video.state=="converting" %>
+  <%= f.submit "中止编码" %> |  
+  <% elsif @video.state=="canceled" || @video.state=="error" \
+          || @video.state=="soft_deleted"%>
+    <%= f.submit "重置视频" %> |  
+  <% else %>
+    <%= f.submit "取消审核" %> |
+  <% end %>
+  <%= f.submit "重新生成缩略图" %> |
+  <%= f.submit "手动编码" unless @video.state=="pending" %>
+  <%= f.submit "不需编码" %>
+  <% if @video.state == 'soft_deleted' %>
+  <%#= link_to("恢复该视频", admin_video_path(@video), :confirm => '恢复该视频?', :method => :put) %>
+  <%= f.submit "恢复该视频", :confirm => '恢复该视频?' %>
+  <% else %>
+  <%= link_to("删除该视频", admin_video_path(@video), :confirm => '删除该视频?', :method => :delete) %>
+  <% end %>
+  </div>
+<% end %>
+</div>
+
+<div class="span-6">
+  <h3 class="alt">原始视频详细参数</h3>
+  <hr />
+  <div class="span-2">时长：</div> 
+  <div class="span-3">
+    <% time = (@video.duration/1000).to_i if @video.duration %>
+    <%#= [time/3600, time/60 % 60, time % 60].map{|t| t.to_s.rjust(2,'0')}.join(':') %>
+    <%= [[time/3600,'时'], [time/60 % 60,'分'], [time % 60,'秒']].map{|t| t[0].to_s.rjust(2,'0')+t[1]}.join if @video.duration %>
+  </div>
+  <hr /><div class="span-2">容器：</div> <div class="span-3"><%= @video.container %></div>
+  <hr /><div class="span-2">宽：</div> <div class="span-3"><%= @video.width %></div>
+  <hr /><div class="span-2">高：</div> <div class="span-3"><%= @video.height %></div>
+  <hr /><div class="span-2">视频编码器：</div> <div class="span-3"><%= @video.video_codec %></div>
+  <hr /><div class="span-2">视频码率：</div> <div class="span-3"><%= @video.video_bitrate %></div>
+  <hr /><div class="span-2">视频帧率：</div> <div class="span-3"><%= @video.fps %></div>
+  <hr /><div class="span-2">音频编码器：</div> <div class="span-3"><%= @video.audio_codec %></div>
+  <hr /><div class="span-2">音频采样率：</div> <div class="span-3"><%= @video.audio_sample_rate %></div>
+</div>
+
+<hr class="space" />
+<div class="span-18">
+  <h3 class="alt">播放原始视频：（仅当原始视频格式被支持时可用）</h3>
+  <% url = @video.asset.url %>
+  <%= render :partial => "shared/flowplayer", :locals => { :url => url, :player_id => "org_player" } %> 
+  <hr class="space" />
+</div>
+
+
+<% if @video.state == "converted" %>
+<div class = "span-18">
+  <h3 class="alt">播放编码后的视频：</h3>
+  <%= "进入编码队列于：" + @video.queued_at.to_s(:db) if @video.queued_at %>
+  <%= "开始编码于：" + @video.started_encoding_at.to_s(:db) if @video.started_encoding_at %>
+  <%= "结束编码于：" + @video.encoded_at.to_s(:db) if @video.encoded_at %><hr class="space" />
+  <% if time = @video.encoding_time %>
+  完成编码总用： 
+  <%= "#{time.hour}小时" unless time.hour == 0 %>
+  <%= "#{time.min}分" unless time.min == 0 %>
+  <%= "#{time.sec}秒" %>
+  <% end %>
+  <% url = @video.asset.url(:transcoded) %>
+  <%= render :partial => "shared/flowplayer", :locals => { :url => url, :player_id => "encoded_player" } %>
+  <hr class="space" />
+</div>			
+<% end %>
+
+<div class="span-12">
+<%= link_to "返回该视频显示页", video_path(@video) %> | 
+<%= link_to "返回该视频管理首页", admin_video_path(@video) %>
+</div>
+<hr class="space" />
+<!-- 审核、编辑视频 结束 -->

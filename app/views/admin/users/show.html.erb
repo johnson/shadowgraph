@@ -1,0 +1,57 @@
+<!-- 管理页面 用户详细信息显示 开始 -->
+<div class="span-10"><h2><%= @user.login %><%= t("’s")+t("user_profile") %></h2></div>
+<% if current_user && current_user.has_role?('admin') %>
+<div class="button">
+  <%= link_to "审核、编辑用户", edit_admin_user_path(@user) %>
+</div>	  
+<% end %>  
+<hr />
+
+<div class="span-2 center">
+  <a href = "<%= admin_user_url(@user) %>" class = "user_thumb">
+    <%= avatar_for @user %>
+  </a>
+</div>
+<div class="span-3">
+  <%= t("login_account") %>: <%= link_to @user.login, admin_user_path(@user) %><br />
+  <span>状态</span>: <%= t(@user.state) %>
+</div>
+<div class="span-7">
+  <span><%= t("email") %></span>: <%= @user.email %>
+</div>
+<div class="span-4"></div>
+<hr class="space"/>
+<hr />
+
+<% unless @videos.empty? %>
+<!-- 用户视频列表 开始 -->
+<h2><%= @user.login %><%= t("’s")+t("video_list") %></h2>
+<hr />
+
+<div class="prepend-1 span-18">
+<%= link_to "全部视频", admin_user_videos_path(@user) %>
+<%= link_to "待审核视频", admin_user_videos_path(@user, :state => 'pending') %>
+<%#= link_to "已审核视频", admin_user_videos_path(@user, :state => 'audited') %>
+<%= link_to "不需要编码的视频", admin_user_videos_path(@user, :state => 'no_encoding') %>
+<%= link_to "进入编码队列视频", admin_user_videos_path(@user, :state => 'queued_up') %>
+<%= link_to "编码中视频", admin_user_videos_path(@user, :state => 'converting') %>
+<%= link_to "已编码视频", admin_user_videos_path(@user, :state => 'converted') %>
+<%= link_to "编码出错视频", admin_user_videos_path(@user, :state => 'error') %>
+<%= link_to "已取消视频", admin_user_videos_path(@user, :state => 'canceled') %>
+<%= link_to "已删除视频", admin_user_videos_path(@user, :state => 'soft_deleted') %>
+</div>
+<hr class="space"/>
+<hr />
+
+<div class="span-19"><%= will_paginate @videos %></div>
+<hr class="space"/>
+
+<% @videos.each do |video| %>
+<%= render :partial => 'shared/admin_video_list', :locals => {:video => video} %>
+<% end %>
+
+<div class="span-19"><%= will_paginate @videos, :class => "pagination page-wide" %></div>
+<!-- 用户视频列表 结束 -->
+<% end %>
+
+<!-- 管理页面 用户详细信息显示 结束 -->

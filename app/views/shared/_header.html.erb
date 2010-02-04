@@ -1,0 +1,39 @@
+<!-- 页头 开始 -->
+<hr class="space" />
+<div class="span-18">
+  <h1 id = "header">
+    <a href = "/" class='logo'><%= CONFIG['app_name'] %></a>
+  </h1>
+  <div class="append-1" style="display:inline;">
+    <span class="alt"><%= CONFIG['descp'] %></span>
+  </div>
+  <% if flash[:notice] %>
+  <div class="notice" style="display:inline;">
+    <%= t('notice') + ":" + flash[:notice] %>
+  </div>
+  <% elsif flash[:error] %>
+  <div class="error" style="display:inline;">
+    <%= t('error')  + ":" + flash[:error] %>
+  </div>
+  <% end %>
+</div>
+
+<div class="append-2 span-4 button" style="display:inline;">
+  <%= link_to '上传新视频', new_video_url, :class => 'new' %>
+</div>
+
+<% if false %>
+<div class = "innertube">  
+  <% flash.each do |key,value| %>
+  <div id="flash" class="flash_<%= key %>" >
+    <span class="message"><%= value %></span>
+  </div>
+  <br />
+  <% end -%>
+</div>
+<div class="prepend-12 span-6 last"><input id = "search" type = "text" value = "搜索视频"/></div>
+<% end %>
+
+<hr class="space" />
+<hr />
+<!-- 页头 结束 -->

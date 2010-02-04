@@ -1,0 +1,13 @@
+<!-- flowplayer 开始 -->
+<%= javascript_include_tag 'flowplayer' %>
+
+<% flowplayer_id = defined?(player_id) ? player_id : "default_player" %>
+<a  
+href="<%= url %>"  
+style="display:block;width:500px;height:375px" 
+id="<%= flowplayer_id %>"> </a>
+<%#  this will install flowplayer inside previous A- tag.  %>
+<script>
+flowplayer("<%= flowplayer_id %>", "/flowplayer/flowplayer-3.0.3.swf",{clip:{autoPlay: false, autoBuffering: false}});
+</script>
+<!-- flowplayer 结束 -->

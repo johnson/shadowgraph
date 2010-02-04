@@ -1,0 +1,10 @@
+<!-- 注册用户 开始 -->
+<h2><%= t("register") %></h2>
+<hr />
+
+<% form_for @user, :url => account_path do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "form", :object => f %>
+  <%= f.submit t("register") %>
+<% end %>
+<!-- 注册用户 结束 -->

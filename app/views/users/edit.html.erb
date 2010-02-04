@@ -1,0 +1,18 @@
+<!-- 编辑用户信息 开始 -->
+<h2><%= t("edit_user_profile") %></h2>
+<hr />
+
+<%= link_to t("return")+t("user")+t("homepage"), account_path %>
+<hr class="space" />
+
+<div class="prepend-1">
+<% form_for @user, :url => account_path do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "form", :object => f %>
+  <%= f.submit t("update_user_profile") %>
+<% end %>
+</div>
+
+<hr class="space" />
+<%= link_to t("return")+t("user")+t("homepage"), account_path %>
+<!-- 编辑用户信息 结束 -->

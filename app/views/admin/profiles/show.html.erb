@@ -1,0 +1,65 @@
+<h1>编码格式详情</h1>
+<%= link_to "视频格式首页", admin_profiles_path %>
+<h2><%= @profile.title %>的详情</h2>
+<p>
+  <table>
+    <tbody>
+      <tr>
+        <td>标题</td>    
+        <td><%= @profile.title %></td>
+      </tr>
+      <tr>
+        <td>播放器</td>
+        <td><%= @profile.player %></td>
+      </tr>
+      <tr>
+        <td>容器</td>
+        <td><%= @profile.container %></td>
+      </tr>
+      <tr>
+        <td>宽度（像素）</td>
+        <td><%= @profile.width %></td>
+      </tr>
+      <tr>
+        <td>高度（像素）</td>
+        <td><%= @profile.height %></td>
+      </tr>
+      <tr>
+        <td>视频编码器</td>
+        <td><%= @profile.video_codec %></td>
+      </tr>
+      <tr>
+        <td>视频码率</td>
+        <td><%= @profile.video_bitrate %></td>
+      </tr>
+      <tr>
+        <td>每秒帧数</td>
+        <td><%= @profile.fps %></td>
+      </tr>
+      <tr>
+        <td>音频编码器</td>
+        <td><%= @profile.audio_codec %></td>
+      </tr>
+      <tr>
+        <td>音频码率</td>
+        <td><%= @profile.audio_bitrate %></td>
+      </tr>
+      <tr>
+        <td>音频采样率</td> 
+        <td><%= @profile.audio_sample_rate %></td>
+      </tr>
+      <tr>
+        <td>位置</td> 
+        <td><%= @profile.position %></td>
+      </tr>
+      <tr>
+        <td>操作</td>
+        <td>
+          <%= link_to "编辑", edit_admin_profile_path(@profile) %> | 
+          <%= link_to '删除', admin_profile_path(@profile), :confirm => '删除本视频格式?', :method => :delete %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</p>
+<%= link_to "视频格式首页", admin_profiles_path %>

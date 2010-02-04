@@ -1,0 +1,42 @@
+<!-- 管理角色 首页 开始 -->
+
+<div class="span-4"><h2>管理角色</h2></div>
+<% if false %>
+<div class="button">
+<%= link_to "新建角色", new_admin_role_path %>  
+</div>
+<% end %>
+<hr />
+
+<% if false %>
+<div class="prepend-1 span-18">
+<%= link_to "全部角色", admin_roles_path %>
+<%= link_to "待审核角色", admin_roles_path(:state => 'pending') %>
+<%= link_to "已审核角色", admin_roles_path(:state => 'audited') %>
+<%= link_to "进入编码队列角色", admin_roles_path(:state => 'queued_up') %>
+<%= link_to "编码中角色", admin_roles_path(:state => 'converting') %>
+<%= link_to "已编码角色", admin_roles_path(:state => 'converted') %>
+<%= link_to "编码出错角色", admin_roles_path(:state => 'error') %>
+<%= link_to "已取消角色", admin_roles_path(:state => 'canceled') %>
+<%= link_to "已删除角色", admin_roles_path(:state => 'soft_deleted') %>
+</div>
+<hr class="space"/>
+<hr />
+<% end %>
+
+<div class="span-19"><%= will_paginate @roles %></div>
+<hr class="space"/>
+
+<% @roles.each do |role| %>
+<div class="prepend-1 span-3"></div>
+<div class="span-7">
+  <p>角色名: <%= link_to role.name, admin_role_path(role) %></p>
+</div>
+<div class="span-3"></div>
+<div class="span-4"></div>
+<hr />
+<% end %>
+
+<div class="span-19"><%= will_paginate @roles, :class => "pagination page-wide" %></div>
+<hr class="space"/>
+<!-- 管理角色 首页 结束 -->

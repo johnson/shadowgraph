@@ -1,0 +1,30 @@
+<% if current_user %>
+<!-- 用户信息栏 开始 -->
+  <h3 class="alt"><%= @user.login %><%= t("’s")+t("user_profile") %></h3>
+  <b>头像:</b><br />
+  <%= link_to avatar_for(@user), user_path(@user) %>
+  <br />
+  <b><%= t("login_account") %>:</b><br />
+  <%=h @user.login %>
+  <br />
+  <% if current_user && (current_user.has_role?('admin') || current_user.login == @user.login) %>
+  <b><%= t("login_count") %>:</b><br />
+  <%=h @user.login_count %>
+  <br />
+  <b><%= t("last_request_at") %>:</b><br />
+  <%=h @user.last_request_at.to_s(:db) %>
+  <br />
+  <b><%= t("last_login_at") %>:</b><br />
+  <%=h (@user.last_login_at ? @user.last_login_at.to_s(:db) : t("first_login")) %>
+  <br />
+  <b><%= t("current_login_at") %>:</b><br />
+  <%=h @user.current_login_at.to_s(:db) %>
+  <br />
+  <b><%= t("last_login_ip") %>:</b><br />
+  <%=h @user.last_login_ip %>
+  <br />
+  <b><%= t("current_login_ip") %>:</b><br />
+  <%=h @user.current_login_ip %>
+  <% end %>
+<!-- 用户信息栏 结束 -->
+<% end %>

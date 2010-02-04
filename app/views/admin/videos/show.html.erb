@@ -1,0 +1,91 @@
+<!-- 管理页面 视频详细信息显示 开始 -->
+<div class="span-4"><h2>视频详细信息</h2></div>
+<% if current_user && current_user.has_role?('admin') %>
+<div class="button">
+  <%= link_to "审核、编辑视频", edit_admin_video_path(@video) %>
+</div>	  
+<% end %>
+<hr />
+
+<div class="prepend-1 span-18">
+<%= link_to "全部视频", admin_videos_path %>
+<%= link_to "待审核视频", admin_videos_path(:state => 'pending') %>
+<%#= link_to "已审核视频", admin_videos_path(:state => 'audited') %>
+<%= link_to "不需要编码的视频", admin_videos_path(:state => 'no_encoding') %>
+<%= link_to "进入编码队列视频", admin_videos_path(:state => 'queued_up') %>
+<%= link_to "编码中视频", admin_videos_path(:state => 'converting') %>
+<%= link_to "已编码视频", admin_videos_path(:state => 'converted') %>
+<%= link_to "编码出错视频", admin_videos_path(:state => 'error') %>
+<%= link_to "已取消视频", admin_videos_path(:state => 'canceled') %>
+<%= link_to "已删除视频", admin_videos_path(:state => 'soft_deleted') %>
+</div>
+<hr class="space"/>
+<hr />
+
+<div  class="prepend-1 span-18">
+  <h3 class='alt'>视频标题：<%= @video.title %></h3>
+
+  <%= link_to @video.user.login, @video.user %> 于 <%= @video.created_at.to_s(:db) %> 上传
+  <hr class="space"/>
+
+  <% if false %>
+  <span class = "tags">Tagged with: <span><%= @video.tag_list %></span></span>
+  <% end %>
+
+  <% 
+  case @video.state  
+  when "converted"
+  %>
+  <%= "进入编码队列于：" + @video.queued_at.to_s(:db) if @video.queued_at %>
+  <br />
+  <%= "开始编码于：" + @video.started_encoding_at.to_s(:db) if @video.started_encoding_at %>
+  <br />
+  <%= "结束编码于：" + @video.encoded_at.to_s(:db) if @video.encoded_at %>
+  <br />
+  <% if time = @video.encoding_time %>
+  完成编码总用： 
+  <%= "#{time.hour}小时" unless time.hour == 0 %>
+  <%= "#{time.min}分" unless time.min == 0 %>
+  <%= "#{time.sec}秒" %>
+  <% end %>
+  编码后视频：
+  <% url = @video.asset.url(:transcoded) %>
+  <%= render :partial => "shared/flowplayer", :locals => { :url => url } %>
+  原始视频：
+  <% org_url = @video.asset.url %>
+  <%= render :partial => "shared/flowplayer", :locals => { :url => org_url, 
+                                              :player_id => "org_player"  } %>  
+  <% when "no_encoding" %>
+  原始视频：  
+  <% url = @video.asset.url %>
+  <%= render :partial => "shared/flowplayer", :locals => { :url => url } %>
+  <% when "error" %>
+  <div class="error">视频编码错误，请联系管理员</div>  
+  <% when "pending" %>
+  <div class="notice">视频尚未审核通过</div>  
+  <% when "soft_deleted" %>
+  <div class="notice">视频已被删除</div>  
+  <% when "converting" %>
+  <div class="notice">视频正在编码中，稍后再试</div>	
+  <% else %>
+  <div class="notice"><%= @video.state %></div>
+  <% end %>
+  <hr class="space"/>  
+
+  <h3 class="alt">视频描述：</h3>
+  <%= @video.description %>
+  <hr class="space"/>
+
+  <h3 class="alt">视频截图：</h3>
+  <p><%= image_tag @video.asset.url(:large), :alt => @video.filename %></p>
+  <hr class="space"/>
+
+  <% if current_user && current_user.has_role?('admin') %>
+  <hr />  
+  <div class="button">
+  <%= link_to "审核、编辑视频", edit_admin_video_path(@video) %>
+  </div>
+  <hr class="space"/>   
+  <% end %>
+</div>
+<!-- 管理页面 视频详细信息显示 结束 -->

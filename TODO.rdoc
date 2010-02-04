@@ -1,0 +1,3 @@
+* Design a logo for shadowgraph.
+
+* i18n

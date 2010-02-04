@@ -1,0 +1,76 @@
+<!-- 管理角色 首页 开始 -->
+<div class="span-4"><h2>编码格式</h2></div>
+<div class="button">
+<%= link_to "新建编码格式", new_admin_profile_path %>  
+</div>
+<hr />
+
+<h3 class='alt'>说明</h3>
+
+<p>
+  编码格式是上传视频将被编码成的格式。如果有多个格式，会编码为相应的多个文件。推荐格式如下：
+<br />
+  <!-- <pre> -->
+title:"Flash video SD",  container:"flv", video_bitrate:300, audio_bitrate:48, width:320, height:240, fps:24, position:0, player:"flash"
+<br />
+title:"Flash video HI",  container:"flv", video_bitrate:400, audio_bitrate:48, width:480, height:360, fps:24, position:1, player:"flash"
+<br />
+title:"Flash h264 SD",   container:"mp4", video_bitrate:300, audio_codec:"aac", audio_bitrate:48, width:320, height:240, fps:24, position:2, player:"flash"
+<br />
+title:"Flash h264 HI",   container:"mp4", video_bitrate:400, audio_bitrate:48, audio_codec:"aac", width:480, height:360, fps:24, position:3, player:"flash"
+<br />
+title:"Flash h264 480p", container:"mp4", video_bitrate:600, audio_bitrate:48, audio_codec:"aac", width:852, height:480, fps:24, position:4, player:"flash"
+<!-- </pre> -->
+</p>
+
+<h3 class='alt'>现有格式列表</h3>
+
+<p>
+  现有格式如下：
+  <table>
+<thead>    
+    <tr>
+      <th>标题</th>
+      <th>播放器</th>
+      <th>封装<br/>格式</th>
+      <th>宽度<br/>(pix)</th>      
+      <th>高度<br/>(pix)</th>
+      <th>视频<br/>编码器(kb/s)</th>
+      <th>视频<br/>码率</th>              
+      <th>帧率<br/>(f/s)</th> 
+      <th>音频<br/>编码器</th>   
+      <th>音频<br/>码率(kb/s)</th>
+      <th>音频<br/>采样率(kHz/s)</th>     
+      <th>位置</th>   
+      <th>操作</td>   
+    </tr>
+    </thead>
+    <tbody>
+    <% @profiles.each do |profile| %>
+    <tr>      
+      <td><%= link_to profile.title, admin_profile_path(profile) %></td>
+      <td><%= profile.player %></td>
+      <td><%= profile.container %></td>
+      <td><%= profile.width %></td>
+      <td><%= profile.height %></td>
+      <td><%= profile.video_codec %></td>
+      <td><%= profile.video_bitrate %></td>
+      <td><%= profile.fps %></td>
+      <td><%= profile.audio_codec %></td>
+      <td><%= profile.audio_bitrate %></td>
+      <td><%= profile.audio_sample_rate %></td>
+      <td><%= profile.position %></td>
+      <td>
+        <div class="button"><%= link_to "编辑", edit_admin_profile_path(profile) %></div>
+      </td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+</p>
+
+<hr/>
+<div class="button">
+<%= link_to "新建编码格式", new_admin_profile_path %>  
+</div>
+<hr class="space"/>

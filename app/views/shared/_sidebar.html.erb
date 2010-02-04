@@ -1,0 +1,33 @@
+<!-- 侧边栏 开始 -->
+<!-- <div id = "sidebar" class="lcolborder span-4 last">    -->
+  <h3 class="alt"><%= t("welcome") + ' ' + current_user.login if current_user %></h3>
+  <% if current_user && current_user.has_role?('admin') %>
+  <%= link_to "管理视频", admin_videos_path(:state => 'pending') %>  <br />
+  <%= link_to "管理用户", admin_users_path %>  <br />
+  <%= link_to "管理角色", admin_roles_path %>  <br />
+  <%= link_to "管理视频编码规格", admin_profiles_path %>
+  <hr class="space" />  
+  <% end %>
+
+  <% if !current_user %>
+  <%= link_to "注册", new_account_path %><br />
+  <%= link_to "登陆", new_user_session_path %><br />
+  <% else %>
+  <%= link_to "我的账号", account_path %><br />
+  <%= link_to "注销", user_session_path, :method => :delete, :confirm => t("confirm_logout") %>
+  <hr class="space" />
+  <% end %>
+
+
+  <% if false %>
+  <p><%= pluralize User.logged_in.count, "user" %> currently logged in.</p><br /> <!-- This based on last_request_at, if they were active < 10 minutes they are logged in -->
+
+  <div id = "tagcloud">
+    <%# tag_cloud @tag_cloud, %w(css1 css2 css3 css4) do |tag, css_class| %>
+    <%#= link_to tag.name, '/tags/'  + tag.name , :class => css_class %>
+    <%# end %>
+  </div><!-- /tagcloud -->
+  <% end %>
+
+<!-- </div> -->
+<!-- 侧边栏 结束 -->

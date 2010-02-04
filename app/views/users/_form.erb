@@ -1,0 +1,11 @@
+<%= form.label :login, t("login_account") %><br />
+<%= form.text_field :login %><br />
+<%= form.label :email, t("email") %><br />
+<%= form.text_field :email %><br />
+<br />
+<%= form.label :password, form.object.new_record? ? t("password") : t("change_password") %><br />
+<%= form.password_field :password %><br />
+<br />
+<%= form.label :password_confirmation, t("confirm_password") %><br />
+<%= form.password_field :password_confirmation %><br />
+<br />

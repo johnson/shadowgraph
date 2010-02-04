@@ -1,0 +1,33 @@
+<h2>新建视频格式</h2>
+<hr />
+
+<%= link_to "返回视频格式首页", admin_profiles_path %>
+<hr class="space" />
+
+<h3 class="alt">说明</h3>
+<p>
+  编码格式是上传视频将被编码成的格式。如果有多个格式，会编码为相应的多个文件。推荐格式如下：
+<br />
+  <!-- <pre> -->
+title:"Flash video SD",  container:"flv", video_bitrate:300, audio_bitrate:48, width:320, height:240, fps:24, position:0, player:"flash"
+<br />
+title:"Flash video HI",  container:"flv", video_bitrate:400, audio_bitrate:48, width:480, height:360, fps:24, position:1, player:"flash"
+<br />
+title:"Flash h264 SD",   container:"mp4", video_bitrate:300, audio_codec:"aac", audio_bitrate:48, width:320, height:240, fps:24, position:2, player:"flash"
+<br />
+title:"Flash h264 HI",   container:"mp4", video_bitrate:400, audio_bitrate:48, audio_codec:"aac", width:480, height:360, fps:24, position:3, player:"flash"
+<br />
+title:"Flash h264 480p", container:"mp4", video_bitrate:600, audio_bitrate:48, audio_codec:"aac", width:852, height:480, fps:24, position:4, player:"flash"
+<!-- </pre> -->
+</p>
+
+<h3 class="alt">新视频格式</h3>
+<% form_for @profile, :url => admin_profiles_url do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "form", :object => f %>
+  <%= f.submit "新建" %>
+<% end %>
+
+<hr class="space" />
+<%= link_to "返回视频格式首页", admin_profiles_path %>
+<hr class="space" />

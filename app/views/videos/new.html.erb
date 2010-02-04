@@ -1,0 +1,87 @@
+<!-- 新建视频 开始 -->
+<%= stylesheet_link_tag 'uploadify' %>
+<%= javascript_include_tag 'jquery.uploadify', 'swfobject' %>
+
+<%- session_key_name = ActionController::Base.session_options[:session_key] -%>
+
+<script type="text/javascript">// <![CDATA[
+$(document).ready(function() {
+  $('#video_asset').uploadify({
+    'uploader'      : '/uploadify/uploadify.swf',
+    'script'        : '/videos',
+    'fileDataName'  : 'video[asset]',    
+    'cancelImg'     : '/uploadify/cancel.png',
+    'scriptData'    : {
+      '<%= session_key_name %>' : '<%= u cookies[session_key_name] %>',
+      'authenticity_token'      : '<%= u form_authenticity_token if protect_against_forgery? %>'
+    },
+    // <% if false  %>
+    // 选择文件时附加上视频信息有问题，改为点击上传按钮时附加上
+    // onSelectOnce: function(evt, queueID, fileObj, response, data) { 
+    //   $('#video_asset').uploadifySettings('scriptData', {
+    //     'video[title]' : $('#video_title').val(),
+    //     'video[description]' : $('#video_description').val()        
+    //   });
+    // },
+    // <% end %>
+    // <%# 上传成功后redirect到视频页面 %>
+    onComplete: function (evt, queueID, fileObj, response, data) {
+      var v_id = response.match(/id\=(\d+)/)[1];
+      // alert(v_id);
+      window.location = "/videos/"+v_id;
+    },    
+  });
+});
+// <%# 上传前附加上视频信息 %>
+function add_video_info(){
+  $('#video_asset').uploadifySettings('scriptData', {
+    'video[title]' : $('#video_title').val(),
+    'video[description]' : $('#video_description').val()        
+  }); 
+}
+// ]]></script>
+
+<h2>新建视频</h2>
+<hr />
+
+<%# TODO 增加前端表单验证 %>
+<% form_for(@video, :html => { :multipart => true }) do |f| %>
+  <%= f.error_messages %>
+  <table>
+    <tr>
+      <td><%= f.label :title,'标题' %>: </td>
+      <td><%= f.text_field :title, :class => 'title span-10' %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :description,'描述' %>: </td>
+      <td><%= f.text_area :description, :class => 'span-10'%></td>
+    </tr>
+<% if false %>
+    <tr>
+    	<td><%= f.label :tags %>: </td><td><%= f.text_field :tag_list %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :video %>: </td><td><%= f.file_field :uploaded_data %></td>
+    </tr>
+<% end %>    
+    <tr>
+      <td>
+        <%= f.label :video,'视频文件'  %>: </td><td><%= f.file_field :asset %>
+        <a href="javascript:add_video_info();$('#video_asset').uploadifyUpload();">开始上传</a> ｜ 
+        <a href="javascript:$('#video_asset').uploadifyClearQueue();">清除队列</a> ｜ 
+        <%# BUG 取消上传有问题 %>
+        <a href="javascript:$('#video_asset').uploadifyCancel();">取消上传</a>
+      </td>
+    </tr> 
+    <tr>
+      <td>
+      <% if false %>
+        <%= f.submit '提交' %> - 
+      <% end %>
+      <%= link_to '返回', videos_path %>
+      </td>
+    </tr>
+  </table>
+
+<% end %>
+<!-- 新建视频 结束 -->

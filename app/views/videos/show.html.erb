@@ -1,0 +1,63 @@
+<!-- 展示页面 视频详细信息显示 开始 -->
+<div class="span-4"><h2><%= t("play_video") %></h2></div>
+<% if current_user && current_user.has_role?('admin') %>
+<div class="button">
+  <%= link_to t("edit_video"), edit_admin_video_path(@video) %>
+</div>
+<% end %>
+<hr />
+
+<h3 class="alt"><%= @video.title %></h3>
+<hr class="space" />
+
+<div class = "span-19 author">
+  <%= link_to @video.user.login, @video.user %>
+  <%= t("uploaded_at") %>
+  <%= @video.created_at.to_s(:db) %>
+</div>
+<hr class="space" />
+
+<% if false %>
+<span class = "tags">Tagged with: <span><%= @video.tag_list %></span></span>
+<% end %>
+
+<div class="prepend-1"> 
+<% 
+  case @video.state  
+  when "converted"
+%>
+  <% url = @video.asset.url(:transcoded) %>
+  <%= render :partial => "shared/flowplayer", :locals => { :url => url } %>
+<% when "no_encoding" %>
+  <% url = @video.asset.url %>
+  <%= render :partial => "shared/flowplayer", :locals => { :url => url } %>  
+<% when "error" %>
+<div class="error"><%= t("encode_error") %></div>	
+<% when "pending" %>
+<div class="notice"><%= t("video_pending") %></div>	
+<% else %>
+<div class="notice"><%= t("video_processing") %></div>
+<% end %>
+</div>
+
+<hr class="space" />
+
+<div class="span-1"><%= t("description") %></div>
+<div class="span-17"><%= @video.description %></div>
+
+<%#= image_tag @video.asset.url %>
+<%#= image_tag @video.asset.url(:large) %>
+
+<% if false %>
+<div id = "video_replies">
+  <%= render :partial => 'reply' %>
+
+  <% for reply in @video.replies do %>
+  <div class = "reply">
+    <p class = "author">Posted By: <%= link_to reply.user.login, reply.user %> on <%= reply.created_at %></p>
+    <%= reply.body %>
+  </div>
+  <% end %>
+</div>
+<% end %>	
+<!-- 展示页面 视频详细信息显示 结束 -->	

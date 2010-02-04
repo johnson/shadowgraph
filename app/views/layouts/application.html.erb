@@ -1,0 +1,42 @@
+<!-- 公共布局 开始 -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+  <head>
+    <title><%= CONFIG['app_name'] %></title>
+      <%= stylesheet_link_tag 'blueprint/screen', 'blueprint/plugins/fancy-type/screen', 'video', :media => "screen", :cache => true %>
+      <%= stylesheet_link_tag 'blueprint/print', :media => "print", :cache => true %>
+      <!--[if lt IE 8]>
+       <%= stylesheet_link_tag 'blueprint/ie', :media => "screen, projection" %>
+      <![endif]-->
+  		<%= javascript_include_tag 'jquery' %>
+  </head>
+
+  <body>
+    <!-- 主容器 开始 -->
+    <!-- <div id = "body" class="container showgrid"> --> <%# 有网格背景，调使用 %>
+    <div id = "body" class="container">          <%# 无网格背景 %>
+    <%  container = Rails.env.production? ? "container" : "container showgrid" %>    
+    <!-- <div id = "body" class="<%= container %>"> -->
+
+      <%= render 'shared/header' %>
+    	
+    	<!-- 主体 开始 -->
+    	<div id = "main" class="span-19">					
+				  <%= yield :layout %>
+			</div>
+      <!-- 主体 开始 -->
+      
+      <!-- 侧边栏 开始 -->
+      <div id = "sidebar" class="prepend-1 span-4 last">      
+      <%= render 'shared/sidebar' %>
+      </div>
+      <!-- 侧边栏 结束 -->
+
+      <%= render 'shared/footer' %>
+		  
+		</div>
+		<!-- 主容器 结束 -->
+  </body>
+</html>
+<!-- 公共布局 结束 -->

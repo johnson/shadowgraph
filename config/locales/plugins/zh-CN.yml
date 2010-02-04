@@ -1,0 +1,22 @@
+# zh-CN: 
+#   authlogic:
+#     error_messages:
+#       login_blank: "不能为空"
+#       login_not_found: "不存在"
+#       login_invalid: "只能为字母，数字和.-_@"
+#       consecutive_failed_logins_limit_exceeded: "超过持续登陆出错限制，账号被禁用"
+#       email_invalid: "不是有效email地址"
+#       password_blank: "不能为空"
+#       password_invalid: "无效"
+#       not_active: "你的账号没有激活"
+#       not_confirmed: "你的账号没被确认"
+#       not_approved: "你的账号没被认可"
+#       no_authentication_details: "你没有提供任何认证的信息"
+#     models:
+#       user_session: "用户会话"
+#     attributes:
+#       user_session: "用户会话"
+#         login: "登陆名"
+#         email: "email"
+#         passwword: "密码"
+#         remember_me: "记住登陆状态"

@@ -1,0 +1,28 @@
+<!-- 管理视频 首页 开始 -->
+<h2>管理视频</h2>
+<hr />
+
+<div class="prepend-1 span-18">
+<%= link_to "全部视频", admin_videos_path %>
+<%= link_to "待审核视频", admin_videos_path(:state => 'pending') %>
+<%#= link_to "已审核视频", admin_videos_path(:state => 'audited') %>
+<%= link_to "不需要编码的视频", admin_videos_path(:state => 'no_encoding') %>
+<%= link_to "进入编码队列视频", admin_videos_path(:state => 'queued_up') %>
+<%= link_to "编码中视频", admin_videos_path(:state => 'converting') %>
+<%= link_to "已编码视频", admin_videos_path(:state => 'converted') %>
+<%= link_to "编码出错视频", admin_videos_path(:state => 'error') %>
+<%= link_to "已取消视频", admin_videos_path(:state => 'canceled') %>
+<%= link_to "已删除视频", admin_videos_path(:state => 'soft_deleted') %>
+</div>
+<hr class="space"/>
+<hr />
+
+<div class="span-19"><%= will_paginate @videos %></div>
+<hr class="space"/>
+
+<% @videos.each do |video| %>
+<%= render :partial => 'shared/admin_video_list', :locals => {:video => video} %>
+<% end %>
+
+<div class="span-19"><%= will_paginate @videos, :class => "pagination page-wide" %></div>
+<!-- 管理视频 首页 结束 -->

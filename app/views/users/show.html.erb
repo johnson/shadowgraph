@@ -1,0 +1,48 @@
+<!-- 用户视频信息页 开始 -->
+
+<!-- 用户视频列表 开始 -->
+<div class="span-10"><h2><%= @user.login %><%= t("’s")+t("homepage") %></h2></div>
+<% if current_user && current_user.login == @user.login %>
+<div class="button">
+  <%= link_to t('edit_user_profile'), edit_account_path %>
+</div>
+<% end %>
+<hr />
+
+<% # when user has no video uploaded yet
+if @videos.empty? 
+  @videos=Video.find(:all).paginate(:page => params[:page], 
+                               :order => 'created_at DESC', 
+                               :per_page => 6)
+concat t("user_has_no_video")
+concat '<hr class="space"/>'                               
+end
+%>
+
+<div class="span-24"><%= will_paginate @videos %></div>
+<hr class="space"/>
+
+<% @videos.each do |video| %>
+<div class="prepend-1 span-5">
+  <div class="video_small">  
+    <%= link_to (image_tag video.asset.url(:small), :alt => video.filename), 
+                video_path(video) %>
+    <br />
+    <b>
+    <%= link_to truncate(video.title, 28), video_path(video), :class => "video_title" %>
+    </b>                
+  </div>
+  <div class="prepend-1 alt">
+  <%= link_to video.user.login, user_path(video.user) %><%= t("uploaded_at") %> :
+  <br />  
+  <%= video.created_at.to_s(:db) %>
+  </div>
+  <hr class="space" />  
+</div>
+<% end %>
+
+<div class="span-24"><%= will_paginate @videos, :class => "pagination page-wide" %></div>
+<hr class="space"/>
+<!-- 用户视频列表 结束 -->
+
+<!-- 用户视频列表 结束 -->

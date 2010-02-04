@@ -1,0 +1,24 @@
+--- 
+default: &default
+  app_name: shadowgraph_dev
+  descp: 是个rails视频网站
+  time_zone: Beijing
+  default_locale: zh-CN  
+  web_server: default # default 开发用， apache， nginx  
+  max_upload_file_size: 100 # 上传文件最大尺寸，单位MB
+  gravatar: "on" # on or off  
+  session:
+    session_key: _shadowgraph_session
+    secret: 'Your secret string. To get one -- rake secret'
+    
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
+  name: shadowgraph
+  descp: 是个rails视频网站  
+  web_server: nginx

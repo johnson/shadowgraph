@@ -1,0 +1,20 @@
+<div class="prepend-1 span-3">
+  <a href = "<%= edit_admin_video_url(video) %>" class = "video_thumb">
+    <%= image_tag video.asset.url(:tiny), :alt => video.filename %>
+  </a>
+</div>
+<div class="span-7">
+  <span><%= t("title") %>:</span>
+  <%= link_to truncate(video.title,26), edit_admin_video_url(video) %><br />
+  <span><%= t("uploader") %>:</span> <%= link_to video.user.login, user_path(video.user) %>
+</div>
+<div class="span-3">
+  <span>状态</span>:
+  <p><%= t(video.state) %></p>
+</div>
+<div class="span-4 button">
+  <!-- <p>操作人</p>
+  <p>操作时间</p> -->
+  <%= link_to t("edit_video"), edit_admin_video_path(video) %>
+</div>
+<hr />

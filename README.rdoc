@@ -52,7 +52,11 @@ Maybe you need do this:
 
 === 6. Install the others gems
 
-  $ sudo rake gems:install
+  sudo rake gems:install
+  
+If you use Linux, you should  
+  
+  sudo gem install RubyInline
 
 === 7. Create database and seed data
 

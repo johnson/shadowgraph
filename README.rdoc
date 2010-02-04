@@ -42,9 +42,9 @@ Install the latest newbamboo forked rvideo to complicate ffmpeg 0.5
   rake repackage
   sudo rake install
   
-=== 5. Install flvtools2
+=== 5. Install flvtool2
 
-  sudo gem install flvtools2
+  sudo gem install flvtool2
 
 Maybe you need do this:
   

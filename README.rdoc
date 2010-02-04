@@ -72,7 +72,15 @@ Or
 
 === 8. Launch server
   
-  ./script/server  
+  ./script/server
+  
+=== 9. Login with default user
+
+Login http://localhost:3000 with
+  
+  login/password admin/123456
+
+Then change your pw  
 
 == Can you help?
 

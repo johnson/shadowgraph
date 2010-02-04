@@ -1,6 +1,6 @@
 = ShadowGraph
 
-ShadowGraph is yet another YouTube copy written with Ruby on Rails. It succeed Video-App by <a href = "http://ralphedge.com">Ralph Edge</a> and inspired by <a href = "http://pandastream.com">Panda</a>.
+ShadowGraph is yet another YouTube copy written with Ruby on Rails. It succeed Video-App by Ralph Edge: http://ralphedge.com and inspired by Panda: http://pandastream.com.
 
 == Install and use
 
@@ -13,7 +13,7 @@ ShadowGraph is yet another YouTube copy written with Ruby on Rails. It succeed V
 
 Edit your config/databases.yml
   
-  cp config/databases.yml.sample config/databases.yml
+  cp config/database.yml.sample config/database.yml
 
 Edit app config
   
@@ -26,6 +26,7 @@ You may need to download and compile from source - http://www.ffmpeg.org/downloa
 In Ubuntu:
   
   sudo apt-get install ffmpeg
+  
 In Mac OS:
   
   sudo port install ffmpeg

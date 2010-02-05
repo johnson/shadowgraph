@@ -1,4 +1,4 @@
-class AddStateColumnsToUser < ActiveRecord::Migration
+class AddStateColumnToUser < ActiveRecord::Migration
   def self.up
     add_column :users, :state, :string
   end

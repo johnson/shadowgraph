@@ -1,4 +1,4 @@
-class AddEmailColumnsToUser < ActiveRecord::Migration
+class AddEmailColumnToUser < ActiveRecord::Migration
   def self.up
     add_column :users, :email, :string
   end

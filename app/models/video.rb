@@ -1,6 +1,6 @@
 # 视频管理和编码模型
 class Video < ActiveRecord::Base
-  
+
   named_scope :publiced, :conditions => [ "state = 'converted' OR state = 'no_encoding'"]
   named_scope :pending, :conditions => {:state => 'pending'}
   named_scope :audited, :conditions => {:state => 'audited'}
@@ -14,10 +14,10 @@ class Video < ActiveRecord::Base
   named_scope :being, lambda { |state|
     { :conditions => { :state => state } }
   }
-  
+
   # acl9插件object模型
   acts_as_authorization_object
-  
+
   acts_as_taggable
 
   belongs_to :user
@@ -56,7 +56,7 @@ class Video < ActiveRecord::Base
     # 视频编码完成后将视频状态改变为已编码
     after_transition :to => :queued_up, :do => :encoding #lambda { |video| video.reprocess! }
     after_transition :to => :converted, :do => :set_new_filename
-    
+
     event :audit       do transition :pending => :audited end
     event :queue       do transition :audited => :queued_up end
     event :no_encode   do transition all - :pending => :no_encoding end
@@ -68,10 +68,10 @@ class Video < ActiveRecord::Base
     event :cancel      do transition all - :canceled => :canceled end
     event :soft_delete do transition all - :soft_deleted => :soft_deleted end
   end
-  
+
   # 视频编码信息
-  attr_accessor :duration, :container, :width, :height, 
-              :video_codec, :video_bitrate, :fps, 
+  attr_accessor :duration, :container, :width, :height,
+              :video_codec, :video_bitrate, :fps,
               :audio_codec, :audio_sample_rate
 
   # 用新进程列队编码视频，编码后改变视频状态为已编码
@@ -83,7 +83,7 @@ class Video < ActiveRecord::Base
         # spawn(:nice => 7) do # 1－19，数字越大子进程比父进程优先级越低
         spawn do
         # 用thread来处理
-        # spawn(:method => :thread) do        
+        # spawn(:method => :thread) do
           # logger.info(`ps aux | grep ruby`)
           # logger.info("PID: #{Process.pid}")
 # debugger
@@ -108,7 +108,7 @@ class Video < ActiveRecord::Base
       end
     end
   end
-  
+
   # 用rvideo判断文件是否为有效视频文件
   def video?(path)
     # # 尚未保存时的临时文件
@@ -130,7 +130,7 @@ class Video < ActiveRecord::Base
       return false
     end
   end
-  
+
   def meta_info
     path=self.asset.path
     inspector = RVideo::Inspector.new(:file => path)
@@ -172,8 +172,8 @@ protected
   def set_new_filename
     path=self.asset.path
     current_format = File.extname(path)
-    basename       = File.basename(path, current_format)    
-    update_attribute(:filename, basename)    
+    basename       = File.basename(path, current_format)
+    update_attribute(:filename, basename)
   end
 
 end

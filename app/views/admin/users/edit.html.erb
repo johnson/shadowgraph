@@ -2,14 +2,14 @@
 <div class="span-10"><h2><%= t("admin_edit_user_profile") %></h2></div>
 <% if current_user && current_user.has_role?('owner') %>
 <div class="button">
-  <%= link_to("物理删除该用户", admin_user_path(@user), 
+  <%= link_to("物理删除该用户", admin_user_path(@user),
               :confirm => '物理删除该用户？删除后不可恢复！', :method => :delete) %>
 </div>
 <% end %>
 <hr />
 
 <div class="span-12">
-<%= link_to t("return")+t("user")+t("homepage"), user_path(@user) %> | 
+<%= link_to t("return")+t("user")+t("homepage"), user_path(@user) %> |
 <%= link_to "返回该用户管理首页", admin_user_path(@user) %>
 </div>
 <hr class="space" />
@@ -22,11 +22,11 @@
   <div class="span-12">
   <%= f.submit t("update_user_profile") %> |
   <% if @user.state=="pending" %>
-  <%= f.submit "审核通过" %> | 
+  <%= f.submit "审核通过" %> |
   <% elsif @user.state=="normal" %>
-  <%= f.submit "停权" %> |  
+  <%= f.submit "停权" %> |
   <% elsif @user.state=="suspended" %>
-  <%= f.submit "复权" %> |  
+  <%= f.submit "复权" %> |
   <% else %>
   <%= f.submit "恢复该用户", :confirm => '恢复该用户?' %>
   <% end %>
@@ -39,7 +39,7 @@
 
 
 <div class="span-12">
-<%= link_to t("return")+t("user")+t("homepage"), user_path(@user) %> |  
+<%= link_to t("return")+t("user")+t("homepage"), user_path(@user) %> |
 <%= link_to "返回该用户管理首页", admin_user_path(@user) %>
 </div>
 <hr class="space" />

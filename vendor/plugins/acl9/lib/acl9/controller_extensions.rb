@@ -37,7 +37,7 @@ module Acl9
         when nil then nil
         else
           if opts[:as_method]
-            raise ArgumentError, "you can't specify both method name and helper name" 
+            raise ArgumentError, "you can't specify both method name and helper name"
           else
             opts[:as_method] = helper
             filter = false

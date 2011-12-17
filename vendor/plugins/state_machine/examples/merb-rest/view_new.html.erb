@@ -2,11 +2,11 @@
 
 <%= form_for @user, :action => resource(:users) do %>
   <%= error_messages %>
-  
+
   <p>
     <%= text_field :name, :label => 'Name' %>
   </p>
-  
+
   <p><%= submit 'Create' %></p>
 <% end =%>
 

@@ -6,7 +6,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-  
+
   create_table "another_roles", :force => true do |t|
     t.string   "name",              :limit => 40
     t.string   "authorizable_type", :limit => 40
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-  
+
   create_table "different_association_name_roles_different_association_name_subjects", :id => false, :force => true do |t|
     t.integer  "different_association_name_subject_id"
     t.integer  "different_association_name_role_id"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-  
+
   create_table "bars", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(:version => 0) do
   end
 
   # namespaced
-  
+
   create_table "other_roles", :force => true do |t|
     t.string   "name",              :limit => 40
     t.string   "authorizable_type", :limit => 40
@@ -88,5 +88,5 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-  
+
 end

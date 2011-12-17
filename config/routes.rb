@@ -1,12 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
-  
+
   map.signup '/signup', :controller => 'users',    :action => 'new'
   map.login  '/login',  :controller => 'user_sessions', :action => 'new'
   map.logout '/logout', :controller => 'user_sessions', :action => 'destroy'
-  
+
   #将所有对视频文件的访问用download方法进行访问控制
   map.connect 'videos/:id/:style.:format', :controller => 'videos', :action => 'download', :conditions => { :method => :get }
-  
+
   # profiles resource route within a admin namespace:
   map.namespace :admin do |admin|
     # Directs /admin/profiles/* to Admin::ProfilesController (app/controllers/admin/profiles_controller.rb)
@@ -20,7 +20,7 @@ ActionController::Routing::Routes.draw do |map|
     end
     admin.resources :profiles
     admin.resources :videos, :member => { :rm => :delete }
-  end  
+  end
 
   map.resources :users
 	map.resource :account, :controller => "users"
@@ -48,7 +48,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments

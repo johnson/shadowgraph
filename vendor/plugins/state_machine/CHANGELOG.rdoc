@@ -208,10 +208,10 @@
 * Don't use callbacks for performing transitions
 * Fix state machines in subclasses not knowing what states/events/transitions were defined by superclasses
 * Replace all before/after_exit/enter/loopback callback hooks and :before/:after options for events with before_transition/after_transition callbacks, e.g.
-  
+
   before_transition :from => 'parked', :do => :lock_doors # was before_exit :parked, :lock_doors
   after_transition :on => 'ignite', :do => :turn_on_radio # was event :ignite, :after => :turn_on_radio do
-  
+
 * Always save when an event is fired even if it results in a loopback [Jürgen Strobel]
 * Ensure initial state callbacks are invoked in the proper order when an event is fired on a new record
 * Add before_loopback and after_loopback hooks [Jürgen Strobel]
@@ -282,15 +282,15 @@
 * Renamed InvalidState and InvalidEvent exceptions to StateNotFound and EventNotFound in order to follow the ActiveRecord convention (i.e. RecordNotFound).
 * Added StateNotActive and EventNotActive exceptions to help differentiate between states which don't exist and states which weren't defined in the class.
 * Added support for defining callbacks like so:
-  
+
   def before_exit_parked
   end
-  
+
   def after_enter_idling
   end
 
 * Added support for defining callbacks using class methods:
-  
+
   before_exit_parked :fasten_seatbelt
 
 * Added event callbacks after the transition has occurred (e.g. after_park)

@@ -11,16 +11,16 @@ module Paperclip
 
     # The VideoThumbnail processor accepts three options:
     ### :time_offset
-    # The number of seconds into the video to capture as a thumbnail 
+    # The number of seconds into the video to capture as a thumbnail
     # (this should be a negative number and corresponds to the itsoffset option for FFmpeg).
     ### :geometry
-    # Accepts a wxh geometry string, ideally both the width 
-    # and height should be even numbers however 
+    # Accepts a wxh geometry string, ideally both the width
+    # and height should be even numbers however
     # if they aren’t the processor will adjust them automatically.
     ### :whiny
     # Determines whether or not thumbnailing errors are to be reported.
     attr_accessor :time_offset, :geometry, :whiny
-    
+
     # TODO 新建时将recipe和profile的参数转换为ffmpeg参数
     def initialize(file, options = {}, attachment = nil)
       super
@@ -35,7 +35,7 @@ module Paperclip
       @current_format = File.extname(@file.path)
       @basename       = File.basename(@file.path, @current_format)
     end
-    
+
     # paperclip的processor必须有的方法，在此调用ffmpeg将每个视频编码参数用ffmpeg编码
     def make
       # title:"Flash video SD",  container:"flv", video_bitrate:300, audio_bitrate:48, width:320, height:240, fps:24, position:0, player:"flash"
@@ -46,7 +46,7 @@ module Paperclip
       transcoder = RVideo::Transcoder.new
       # 注意参数后的空格！
       recipe = "ffmpeg -i $input_file$ " # 输入文件路径
-      recipe += "-ar 22050 " 
+      recipe += "-ar 22050 "
       recipe += "-ab 48000 " # 音频码率 $audio_bitrate$
       recipe += "-f flv " # 视频格式
       recipe += "-b 300000 " # 视频码率 $video_bitrate_in_bits$

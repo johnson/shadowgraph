@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
     event :suspend     do transition :normal => :suspended end
     event :unsuspend   do transition :suspended => :normal end
     event :soft_delete do transition all- :soft_deleted => :soft_deleted end
-    event :resume      do transition :soft_deleted => :pending end      
+    event :resume      do transition :soft_deleted => :pending end
   end
 
 end

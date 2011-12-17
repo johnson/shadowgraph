@@ -1,30 +1,30 @@
 # 用户管理控制器。只有特定角色能使用本控制器
 class Admin::UsersController < ApplicationController
-  
+
   layout 'users'
-  
+
   # acl9插件提供的访问控制列表DSL
   access_control do
     allow :admin
-  end  
-  
+  end
+
   before_filter :find_user, :only => [:show, :edit, :update, :destroy]
 
   def index
     if params[:state]
-      @users = User.being(params[:state]).paginate(:page => params[:page], 
-                                                     :order => 'created_at DESC', 
+      @users = User.being(params[:state]).paginate(:page => params[:page],
+                                                     :order => 'created_at DESC',
                                                      :per_page => 6)
     else
-      @users = User.paginate(:page => params[:page], 
-                               :order => 'created_at DESC', 
+      @users = User.paginate(:page => params[:page],
+                               :order => 'created_at DESC',
                                :per_page => 6)
     end
     unless params[:id]
       @user = current_user
     else
       @user = User.find(params[:id])
-    end    
+    end
   end
 
   def show
@@ -34,14 +34,14 @@ class Admin::UsersController < ApplicationController
       @user = User.find(params[:id])
     end
     if params[:state]
-      @videos = @user.videos.being(params[:state]).paginate(:page => params[:page], 
-                                                     :order => 'created_at DESC', 
+      @videos = @user.videos.being(params[:state]).paginate(:page => params[:page],
+                                                     :order => 'created_at DESC',
                                                      :per_page => 6)
     else
-      @videos = @user.videos.paginate(:page => params[:page], 
-                               :order => 'created_at DESC', 
+      @videos = @user.videos.paginate(:page => params[:page],
+                               :order => 'created_at DESC',
                                :per_page => 6)
-    end    
+    end
   end
 
   def edit
@@ -53,18 +53,18 @@ class Admin::UsersController < ApplicationController
     @user.has_role!(@role.name)
     redirect_to admin_role_path(@role)
   end
-  
+
   def mv
     @role=Role.find(params[:role_id])
     @user=User.find(params[:id])
     @user.has_no_role!(@role.name)
-    redirect_to admin_role_path(@role)       
-  end  
+    redirect_to admin_role_path(@role)
+  end
 
   def update
     case  params[:commit]
     when "审核通过"
-      begin 
+      begin
         @user.audit! # 通过审核
         flash[:notice] = "审核已通过"
       rescue StateMachine::InvalidTransition
@@ -85,7 +85,7 @@ class Admin::UsersController < ApplicationController
     end
     redirect_to admin_user_path(@user)
   end
-  
+
   # 软删除用户
   def destroy
     begin
@@ -98,9 +98,9 @@ class Admin::UsersController < ApplicationController
         flash[:error] = "出错，请联系管理员"
       end
     end
-    redirect_to admin_users_path    
+    redirect_to admin_users_path
   end
-  
+
   # 物理删除用户
   # DELETE /admin/users/1/rm
   # DELETE /admin/users/1/rm.xml

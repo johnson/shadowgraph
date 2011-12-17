@@ -3,8 +3,8 @@
 <% if current_user && current_user.has_role?('admin') %>
 <div class="button">
   <%= link_to "审核、编辑用户", edit_admin_user_path(@user) %>
-</div>	  
-<% end %>  
+</div>
+<% end %>
 <hr />
 
 <div class="span-2 center">

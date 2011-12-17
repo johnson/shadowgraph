@@ -6,11 +6,11 @@ module Paperclip
 
     # The VideoThumbnail processor accepts three options:
     ### :time_offset
-    # The number of seconds into the video to capture as a thumbnail 
+    # The number of seconds into the video to capture as a thumbnail
     # (this should be a negative number and corresponds to the itsoffset option for FFmpeg).
     ### :geometry
-    # Accepts a wxh geometry string, ideally both the width 
-    # and height should be even numbers however 
+    # Accepts a wxh geometry string, ideally both the width
+    # and height should be even numbers however
     # if they aren’t the processor will adjust them automatically.
     ### :whiny
     # Determines whether or not thumbnailing errors are to be reported.

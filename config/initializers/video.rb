@@ -1,5 +1,5 @@
 # 视频文件mime type列表
-# VIDEO_TYPE= [ 
+# VIDEO_TYPE= [
 #   'application/x-mp4',
 #   'video/mpeg',
 #   'video/quicktime',

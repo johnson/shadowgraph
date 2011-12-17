@@ -5,63 +5,63 @@ ShadowGraph is yet another YouTube copy written with Ruby on Rails. It succeed V
 == Install and use
 
 === 1. Download the code
-    
+
   git clone git://github.com/johnson/shadowgraph.git
   cd shadowgraph
 
 === 2. Edit your config files
 
 Edit your config/databases.yml
-  
+
   cp config/database.yml.sample config/database.yml
 
 Edit app config
-  
+
   cp config/app_config.yml.sample config/app_config.yml
-  
+
 === 3. Install ffmpeg
 
 You may need to download and compile from source - http://www.ffmpeg.org/download.html
-  
+
 In Ubuntu:
-  
+
   sudo apt-get install ffmpeg
-  
+
 In Mac OS:
-  
+
   sudo port install ffmpeg
 
 === 4. Install rvideo
 
 Install the latest newbamboo forked rvideo to complicate ffmpeg 0.5
-  
+
   sudo gem install echoe
   sudo gem install open4
   git clone git://github.com/newbamboo/rvideo.git
   cd rvideo
   rake repackage
   sudo rake install
-  
+
 === 5. Install flvtool2
 
   sudo gem install flvtool2
 
 Maybe you need do this:
-  
+
   sudo cp /usr/local/bin/flvtool2 /usr/bin/
 
 === 6. Install the others gems
 
   sudo rake gems:install
-  
-If you use Linux, you should  
-  
+
+If you use Linux, you should
+
   sudo gem install RubyInline
 
 === 7. Create database and seed data
 
 Create and migrate database
-  
+
   rake db:create
   rake db:migrate
   rake db:seed
@@ -71,16 +71,16 @@ Or
   rake db:setup
 
 === 8. Launch server
-  
+
   ./script/server
-  
+
 === 9. Login with default user
 
 Login http://localhost:3000 with
-  
+
   login/password admin/123456
 
-Then change your pw  
+Then change your pw
 
 == Can you help?
 

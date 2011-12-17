@@ -1,4 +1,4 @@
-class AddEncodingInfoColumnsToVideo < ActiveRecord::Migration   
+class AddEncodingInfoColumnsToVideo < ActiveRecord::Migration
   def self.up
     add_column :videos, :queued_at, :datetime
     add_column :videos, :started_encoding_at, :datetime

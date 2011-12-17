@@ -1,14 +1,14 @@
 class VideosController < ApplicationController
-  
+
   before_filter :find_video, :only => [:show, :edit, :update, :destroy] # 必须在access_control之前取到@video
-  
+
   # acl9插件提供的访问控制列表DSL
   access_control do
-    allow all, :to => [:index, :show, :download]    
+    allow all, :to => [:index, :show, :download]
     allow :admin
     allow logged_in, :to => [:new, :create]
     allow :creator, :editor, :of => :video, :to => [:edit, :update] # :video 是对@video的引用
-    # allow logged_in, :except => :destroy     
+    # allow logged_in, :except => :destroy
     # allow anonymous, :to => [:index, :show]
   end
 
@@ -71,7 +71,7 @@ class VideosController < ApplicationController
   end
 
 private
- 
+
   def find_video
     @video = Video.find(params[:id])
   end

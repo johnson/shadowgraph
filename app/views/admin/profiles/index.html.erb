@@ -1,7 +1,7 @@
 <!-- 管理角色 首页 开始 -->
 <div class="span-4"><h2>编码格式</h2></div>
 <div class="button">
-<%= link_to "新建编码格式", new_admin_profile_path %>  
+<%= link_to "新建编码格式", new_admin_profile_path %>
 </div>
 <hr />
 
@@ -28,26 +28,26 @@ title:"Flash h264 480p", container:"mp4", video_bitrate:600, audio_bitrate:48, a
 <p>
   现有格式如下：
   <table>
-<thead>    
+<thead>
     <tr>
       <th>标题</th>
       <th>播放器</th>
       <th>封装<br/>格式</th>
-      <th>宽度<br/>(pix)</th>      
+      <th>宽度<br/>(pix)</th>
       <th>高度<br/>(pix)</th>
       <th>视频<br/>编码器(kb/s)</th>
-      <th>视频<br/>码率</th>              
-      <th>帧率<br/>(f/s)</th> 
-      <th>音频<br/>编码器</th>   
+      <th>视频<br/>码率</th>
+      <th>帧率<br/>(f/s)</th>
+      <th>音频<br/>编码器</th>
       <th>音频<br/>码率(kb/s)</th>
-      <th>音频<br/>采样率(kHz/s)</th>     
-      <th>位置</th>   
-      <th>操作</td>   
+      <th>音频<br/>采样率(kHz/s)</th>
+      <th>位置</th>
+      <th>操作</td>
     </tr>
     </thead>
     <tbody>
     <% @profiles.each do |profile| %>
-    <tr>      
+    <tr>
       <td><%= link_to profile.title, admin_profile_path(profile) %></td>
       <td><%= profile.player %></td>
       <td><%= profile.container %></td>
@@ -71,6 +71,6 @@ title:"Flash h264 480p", container:"mp4", video_bitrate:600, audio_bitrate:48, a
 
 <hr/>
 <div class="button">
-<%= link_to "新建编码格式", new_admin_profile_path %>  
+<%= link_to "新建编码格式", new_admin_profile_path %>
 </div>
 <hr class="space"/>

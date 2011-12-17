@@ -11,7 +11,7 @@ class Foo < ActiveRecord::Base
 end
 
 class Uuid < ActiveRecord::Base
-  set_primary_key "uuid"  
+  set_primary_key "uuid"
   acts_as_authorization_object
 end
 

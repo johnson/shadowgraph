@@ -2,34 +2,34 @@
 class Admin::VideosController < ApplicationController
 
   before_filter :find_video, :only => [:show, :edit, :update, :destroy, :rm]
-  
+
   # acl9插件提供的访问控制列表DSL
   access_control do
     allow :admin, :except => :rm
     allow :owner
   end
-  
+
   def index
     if params[:user_id]
       @user = User.find(params[:user_id])
       if params[:state]
-        @videos = @user.videos.being(params[:state]).paginate(:page => params[:page], 
-                                                     :order => 'created_at DESC', 
-                                                     :per_page => 6) 
+        @videos = @user.videos.being(params[:state]).paginate(:page => params[:page],
+                                                     :order => 'created_at DESC',
+                                                     :per_page => 6)
       else
-        @videos = Video.paginate(:page => params[:page], 
-                               :order => 'created_at DESC', 
+        @videos = Video.paginate(:page => params[:page],
+                               :order => 'created_at DESC',
                                :per_page => 6)
       end
       render :template => "admin/users/show"
     else
       if params[:state]
-        @videos = Video.being(params[:state]).paginate(:page => params[:page], 
-                                                  :order => 'created_at DESC', 
+        @videos = Video.being(params[:state]).paginate(:page => params[:page],
+                                                  :order => 'created_at DESC',
                                                   :per_page => 6)
       else
-        @videos = Video.paginate(:page => params[:page], 
-                                 :order => 'created_at DESC', 
+        @videos = Video.paginate(:page => params[:page],
+                                 :order => 'created_at DESC',
                                  :per_page => 6)
       end
     end
@@ -44,11 +44,11 @@ class Admin::VideosController < ApplicationController
   def edit
     @video.meta_info
   end
-  
+
   def update
     case  params[:commit]
     when "审核通过"
-      begin 
+      begin
         @video.audit! # 通过审核
         @video.queue! # 放入编码队列
         flash[:notice] = "审核已通过,已将视频放入编码队列"
@@ -111,16 +111,16 @@ class Admin::VideosController < ApplicationController
         flash[:error] = "出错，请联系管理员"
       end
     end
-    redirect_to admin_videos_path    
+    redirect_to admin_videos_path
   end
-  
+
   # 物理删除视频
   def rm
     @video.destroy
     flash[:notice] = "视频已被物理删除"
-    redirect_to admin_videos_path 
+    redirect_to admin_videos_path
   end
-  
+
 private
 
   def find_video

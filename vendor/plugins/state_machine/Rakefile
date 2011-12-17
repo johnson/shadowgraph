@@ -9,12 +9,12 @@ spec = Gem::Specification.new do |s|
   s.platform          = Gem::Platform::RUBY
   s.summary           = 'Adds support for creating state machines for attributes on any Ruby class'
   s.description       = s.summary
-  
+
   s.files             = FileList['{examples,lib,tasks,test}/**/*'] + %w(CHANGELOG.rdoc init.rb LICENSE Rakefile README.rdoc) - FileList['test/*.log']
   s.require_path      = 'lib'
   s.has_rdoc          = true
   s.test_files        = Dir['test/**/*_test.rb']
-  
+
   s.author            = 'Aaron Pfeifer'
   s.email             = 'aaron@pluginaweek.org'
   s.homepage          = 'http://www.pluginaweek.org'
@@ -83,14 +83,14 @@ task :publish => [:pgem, :pdoc, :release]
 desc 'Publish the release files to RubyForge.'
 task :release => [:gem, :package] do
   require 'rubyforge'
-  
+
   ruby_forge = RubyForge.new.configure
   ruby_forge.login
-  
+
   %w(gem tgz zip).each do |ext|
     file = "pkg/#{spec.name}-#{spec.version}.#{ext}"
     puts "Releasing #{File.basename(file)}..."
-    
+
     ruby_forge.add_release(spec.rubyforge_project, spec.name, spec.version, file)
   end
 end

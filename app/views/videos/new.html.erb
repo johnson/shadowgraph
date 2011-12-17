@@ -9,7 +9,7 @@ $(document).ready(function() {
   $('#video_asset').uploadify({
     'uploader'      : '/uploadify/uploadify.swf',
     'script'        : '/videos',
-    'fileDataName'  : 'video[asset]',    
+    'fileDataName'  : 'video[asset]',
     'cancelImg'     : '/uploadify/cancel.png',
     'scriptData'    : {
       '<%= session_key_name %>' : '<%= u cookies[session_key_name] %>',
@@ -17,10 +17,10 @@ $(document).ready(function() {
     },
     // <% if false  %>
     // 选择文件时附加上视频信息有问题，改为点击上传按钮时附加上
-    // onSelectOnce: function(evt, queueID, fileObj, response, data) { 
+    // onSelectOnce: function(evt, queueID, fileObj, response, data) {
     //   $('#video_asset').uploadifySettings('scriptData', {
     //     'video[title]' : $('#video_title').val(),
-    //     'video[description]' : $('#video_description').val()        
+    //     'video[description]' : $('#video_description').val()
     //   });
     // },
     // <% end %>
@@ -29,15 +29,15 @@ $(document).ready(function() {
       var v_id = response.match(/id\=(\d+)/)[1];
       // alert(v_id);
       window.location = "/videos/"+v_id;
-    },    
+    },
   });
 });
 // <%# 上传前附加上视频信息 %>
 function add_video_info(){
   $('#video_asset').uploadifySettings('scriptData', {
     'video[title]' : $('#video_title').val(),
-    'video[description]' : $('#video_description').val()        
-  }); 
+    'video[description]' : $('#video_description').val()
+  });
 }
 // ]]></script>
 
@@ -63,20 +63,20 @@ function add_video_info(){
     <tr>
       <td><%= f.label :video %>: </td><td><%= f.file_field :uploaded_data %></td>
     </tr>
-<% end %>    
+<% end %>
     <tr>
       <td>
         <%= f.label :video,'视频文件'  %>: </td><td><%= f.file_field :asset %>
-        <a href="javascript:add_video_info();$('#video_asset').uploadifyUpload();">开始上传</a> ｜ 
-        <a href="javascript:$('#video_asset').uploadifyClearQueue();">清除队列</a> ｜ 
+        <a href="javascript:add_video_info();$('#video_asset').uploadifyUpload();">开始上传</a> ｜
+        <a href="javascript:$('#video_asset').uploadifyClearQueue();">清除队列</a> ｜
         <%# BUG 取消上传有问题 %>
         <a href="javascript:$('#video_asset').uploadifyCancel();">取消上传</a>
       </td>
-    </tr> 
+    </tr>
     <tr>
       <td>
       <% if false %>
-        <%= f.submit '提交' %> - 
+        <%= f.submit '提交' %> -
       <% end %>
       <%= link_to '返回', videos_path %>
       </td>

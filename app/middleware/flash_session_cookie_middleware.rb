@@ -15,7 +15,7 @@ class FlashSessionCookieMiddleware
         env['HTTP_COOKIE'] = "#{@session_key}=#{params[@session_key]}".freeze
       end
     end
-    
+
     @app.call(env)
   end
 end

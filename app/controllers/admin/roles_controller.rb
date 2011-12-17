@@ -1,21 +1,21 @@
 # 角色管理控制器。只有特定角色能使用本控制器
 class Admin::RolesController < ApplicationController
-  
+
   # acl9插件提供的访问控制列表DSL
   access_control do
     allow :admin
-  end  
-  
+  end
+
   before_filter :find_role, :only => [:show, :edit, :update, :destroy]
 
   def index
     if params[:state]
-      @roles = Role.being(params[:state]).paginate(:page => params[:page], 
-                                                     :order => 'created_at DESC', 
+      @roles = Role.being(params[:state]).paginate(:page => params[:page],
+                                                     :order => 'created_at DESC',
                                                      :per_page => 6)
     else
-      @roles = Role.paginate(:page => params[:page], 
-                               :order => 'created_at DESC', 
+      @roles = Role.paginate(:page => params[:page],
+                               :order => 'created_at DESC',
                                :per_page => 6)
     end
   end
@@ -25,7 +25,7 @@ class Admin::RolesController < ApplicationController
     @users_in_role = @role.users.find(:all, :select => "id, login")
     all_user = User.find(:all, :select => "id, login")
     @users_out_role = ( all_user - @users_in_role).paginate(:page => params[:page],
-                                      :order => 'created_at DESC', :per_page => 6) 
+                                      :order => 'created_at DESC', :per_page => 6)
   end
 
   def edit
@@ -34,7 +34,7 @@ class Admin::RolesController < ApplicationController
   def update
     case  params[:commit]
     when "审核通过"
-      begin 
+      begin
         @role.audit! # 通过审核
         @role.queue! # 放入编码队列
         flash[:notice] = "审核已通过,已将视频放入编码队列"
@@ -72,7 +72,7 @@ class Admin::RolesController < ApplicationController
     end
     redirect_to edit_admin_role_path(@role)
   end
-  
+
   # 软删除视频
   def destroy
     begin
@@ -85,7 +85,7 @@ class Admin::RolesController < ApplicationController
         flash[:error] = "出错，请联系管理员"
       end
     end
-    redirect_to admin_roles_path    
+    redirect_to admin_roles_path
   end
 
 private

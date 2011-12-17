@@ -1,7 +1,7 @@
 == Gravatar Plugin
 
-This plugin provides a handful of view helpers for displaying gravatars 
-(globally-recognized avatars). 
+This plugin provides a handful of view helpers for displaying gravatars
+(globally-recognized avatars).
 
 Gravatars allow users to configure an avatar to go with their email address at
 a central location: http://gravatar.com. Gravatar-aware websites (such
@@ -26,8 +26,8 @@ for most rails authentication setups), then you can simply use this method
 in your views:
 
   <%= gravatar_for @user %>
-  
-This will be replaced with the full HTML +img+ tag necessary for displaying 
+
+This will be replaced with the full HTML +img+ tag necessary for displaying
 that user's gravatar.
 
 Other helpers are documented under GravatarHelper::PublicMethods.
@@ -39,7 +39,7 @@ support in this plugin, as well as a few minor fixes.
 
 The following people have also written gravatar-related Ruby libraries:
 * Seth Rasmussen created the gravatar gem[http://gravatar.rubyforge.org]
-* Matt McCray has also created a gravatar 
+* Matt McCray has also created a gravatar
   plugin[http://mattmccray.com/svn/rails/plugins/gravatar_helper]
 
 == Author

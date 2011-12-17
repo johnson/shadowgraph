@@ -25,12 +25,12 @@
   SecretsController#index, so you run access_control_hash['SecretsController'].call('index') and
   show the link only if true is returned.
 
-  The problem here is with objects. SecretsController's access_control block can reference instance 
+  The problem here is with objects. SecretsController's access_control block can reference instance
   variables during the permission check, but we have only current instantiated controller which can be any.
 
   Another option is to distinguish visible part from access control part.
 
-    menu do 
+    menu do
       item 'Home', home_path
       item 'Secrets', secrets_path do
         allow :trusted

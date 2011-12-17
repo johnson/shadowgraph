@@ -17,25 +17,25 @@
     <!-- 主容器 开始 -->
     <!-- <div id = "body" class="container showgrid"> --> <%# 有网格背景，调使用 %>
     <div id = "body" class="container">          <%# 无网格背景 %>
-    <%  container = Rails.env.production? ? "container" : "container showgrid" %>    
+    <%  container = Rails.env.production? ? "container" : "container showgrid" %>
     <!-- <div id = "body" class="<%= container %>"> -->
 
       <%= render 'shared/header' %>
-    	
+
     	<!-- 主体 开始 -->
-    	<div id = "main" class="span-19">					
+    	<div id = "main" class="span-19">
 				  <%= yield :layout %>
 			</div>
       <!-- 主体 开始 -->
-      
+
       <!-- 侧边栏 开始 -->
-      <div id = "sidebar" class="prepend-1 span-4 last">      
+      <div id = "sidebar" class="prepend-1 span-4 last">
       <%= render 'shared/sidebar' %>
       </div>
       <!-- 侧边栏 结束 -->
 
       <%= render 'shared/footer' %>
-		  
+
 		</div>
 		<!-- 主容器 结束 -->
   </body>

@@ -6,7 +6,7 @@ one:
   width: 1
   height: 1
   video_codec: MyString
-  fps: 
+  fps:
   audio_codec: MyString
   audio_bitrate: 1
   audio_sample_rate: 1
@@ -18,7 +18,7 @@ two:
   width: 1
   height: 1
   video_codec: MyString
-  fps: 
+  fps:
   audio_codec: MyString
   audio_bitrate: 1
   audio_sample_rate: 1

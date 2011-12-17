@@ -1,17 +1,17 @@
 class Admin::ProfilesController < ApplicationController
-  
+
   def index
     @profiles = Profile.all
   end
-  
+
   def show
     @profile = Profile.find(params[:id])
   end
-  
+
   def new
     @profile = Profile.new
   end
-  
+
   def create
     @profile = Profile.new(params[:profile])
 
@@ -20,13 +20,13 @@ class Admin::ProfilesController < ApplicationController
       redirect_back_or_default admin_profiles_url
     else
       render :action => "new"
-    end    
+    end
   end
-  
+
   def edit
     @profile = Profile.find(params[:id])
   end
-  
+
   def update
     @profile = Profile.find(params[:id])
     if @profile.update_attributes(params[:profile])
@@ -36,13 +36,13 @@ class Admin::ProfilesController < ApplicationController
       render edit_admin_profile_path(@profile)
     end
   end
-  
+
   def destroy
     @profile = Profile.find(params[:id])
     @profile.destroy
 
     redirect_to(admin_profiles_url)
   end
-  
-  
+
+
 end

@@ -5,14 +5,14 @@ module StateMachine
       # than one argument (e.g. the record *and* the state transition).  By
       # default, ActiveRecord only supports passing the record into the
       # callbacks.
-      # 
+      #
       # For example:
-      # 
+      #
       #   class VehicleObserver < ActiveRecord::Observer
       #     # The default behavior: only pass in the record
       #     def after_save(vehicle)
       #     end
-      #     
+      #
       #     # Custom behavior: allow the transition to be passed in as well
       #     def after_transition(vehicle, transition)
       #       Audit.log(vehicle, transition)
@@ -25,7 +25,7 @@ module StateMachine
             alias_method :update, :update_with_multiple_args
           end
         end
-        
+
         # Allows additional arguments other than the object to be passed to the
         # observed methods
         def update_with_multiple_args(observed_method, object, *args) #:nodoc:

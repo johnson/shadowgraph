@@ -96,7 +96,7 @@ class StorageTest < Test::Unit::TestCase
       assert_match %r{^http://something.something.com/avatars/stringio.txt}, @dummy.avatar.url
     end
   end
-  
+
   context "Generating a url with an expiration" do
     setup do
       AWS::S3::Base.stubs(:establish_connection!)
@@ -108,17 +108,17 @@ class StorageTest < Test::Unit::TestCase
                     :s3_host_alias => "something.something.com",
                     :path => ":attachment/:basename.:extension",
                     :url => ":s3_alias_url"
-                    
+
       rails_env("production")
-      
+
       @dummy = Dummy.new
       @dummy.avatar = StringIO.new(".")
-      
+
       AWS::S3::S3Object.expects(:url_for).with("avatars/stringio.txt", "prod_bucket", { :expires_in => 3600 })
-      
+
       @dummy.avatar.expiring_url
     end
-    
+
     should "should succeed" do
       assert true
     end
@@ -193,7 +193,7 @@ class StorageTest < Test::Unit::TestCase
           assert true
         end
       end
-      
+
       context "and remove" do
         setup do
           AWS::S3::S3Object.stubs(:exists?).returns(true)
@@ -207,7 +207,7 @@ class StorageTest < Test::Unit::TestCase
       end
     end
   end
-  
+
   context "An attachment with S3 storage and bucket defined as a Proc" do
     setup do
       AWS::S3::Base.stubs(:establish_connection!)
@@ -215,7 +215,7 @@ class StorageTest < Test::Unit::TestCase
                     :bucket => lambda { |attachment| "bucket_#{attachment.instance.other}" },
                     :s3_credentials => {:not => :important}
     end
-    
+
     should "get the right bucket name" do
       assert "bucket_a", Dummy.new(:other => 'a').avatar.bucket_name
       assert "bucket_b", Dummy.new(:other => 'b').avatar.bucket_name

@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name, :state, :access_state
     end
   end
-  
+
   def self.down
     drop_table :users
   end

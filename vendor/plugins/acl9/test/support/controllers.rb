@@ -72,7 +72,7 @@ class ACLBooleanMethod < EmptyController
   def check_acl
     if self.acl
       true
-    else 
+    else
       raise Acl9::AccessDenied
     end
   end
@@ -82,7 +82,7 @@ end
 
 ###########################################
 class MyDearFoo
-  include Singleton 
+  include Singleton
 end
 
 class ACLIvars < EmptyController

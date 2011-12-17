@@ -1,4 +1,4 @@
-zh-CN: 
+zh-CN:
   models:                     #国际化model名
     account: "帐户"
     personas: "资料设定"
@@ -6,7 +6,7 @@ zh-CN:
     release_policy: "披露策略"
     site: "站点"
     timezone: "时区"
-  
+
   attributes:                 #国际化字段名
     user:
       login: "用户名"
@@ -20,9 +20,9 @@ zh-CN:
       title: "文章标题"
       content: "文章内容"
       user_id: "用户编辑"
-    country: 
+    country:
       name: "名称"
       code: "代码"
-    language: 
+    language:
       name: "名称"
       code: "代码"

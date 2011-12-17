@@ -14,10 +14,10 @@ module StateMachine
   # * Scopes
   # * Callbacks
   # * Validation errors
-  # 
+  #
   # This type of integration allows the user to work with state machines in a
   # fashion similar to other object models in their application.
-  # 
+  #
   # The integration interface is loosely defined by various unimplemented
   # methods in the StateMachine::Machine class.  See that class or the various
   # built-in integrations for more information about how to define additional
@@ -26,22 +26,22 @@ module StateMachine
     # Attempts to find an integration that matches the given class.  This will
     # look through all of the built-in integrations under the StateMachine::Integrations
     # namespace and find one that successfully matches the class.
-    # 
+    #
     # == Examples
-    # 
+    #
     #   class Vehicle
     #   end
-    #   
+    #
     #   class ARVehicle < ActiveRecord::Base
     #   end
-    #   
+    #
     #   class DMVehicle
     #     include DataMapper::Resource
     #   end
-    #   
+    #
     #   class SequelVehicle < Sequel::Model
     #   end
-    #   
+    #
     #   StateMachine::Integrations.match(Vehicle)         # => nil
     #   StateMachine::Integrations.match(ARVehicle)       # => StateMachine::Integrations::ActiveRecord
     #   StateMachine::Integrations.match(DMVehicle)       # => StateMachine::Integrations::DataMapper
@@ -51,12 +51,12 @@ module StateMachine
         find(integration)
       end
     end
-    
+
     # Finds an integration with the given name.  If the integration cannot be
     # found, then a NameError exception will be raised.
-    # 
+    #
     # == Examples
-    # 
+    #
     #   StateMachine::Integrations.find(:active_record)   # => StateMachine::Integrations::ActiveRecord
     #   StateMachine::Integrations.find(:data_mapper)     # => StateMachine::Integrations::DataMapper
     #   StateMachine::Integrations.find(:sequel)          # => StateMachine::Integrations::Sequel

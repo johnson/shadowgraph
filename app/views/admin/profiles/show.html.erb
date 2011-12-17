@@ -5,7 +5,7 @@
   <table>
     <tbody>
       <tr>
-        <td>标题</td>    
+        <td>标题</td>
         <td><%= @profile.title %></td>
       </tr>
       <tr>
@@ -45,17 +45,17 @@
         <td><%= @profile.audio_bitrate %></td>
       </tr>
       <tr>
-        <td>音频采样率</td> 
+        <td>音频采样率</td>
         <td><%= @profile.audio_sample_rate %></td>
       </tr>
       <tr>
-        <td>位置</td> 
+        <td>位置</td>
         <td><%= @profile.position %></td>
       </tr>
       <tr>
         <td>操作</td>
         <td>
-          <%= link_to "编辑", edit_admin_profile_path(@profile) %> | 
+          <%= link_to "编辑", edit_admin_profile_path(@profile) %> |
           <%= link_to '删除', admin_profile_path(@profile), :confirm => '删除本视频格式?', :method => :delete %>
         </td>
       </tr>

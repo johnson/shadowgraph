@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-  before_filter :require_user, :only => [:show, :edit, :update]	
-	
+  before_filter :require_user, :only => [:show, :edit, :update]
+
   # GET /users
   # GET /users.xml
   def index
@@ -21,14 +21,14 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
     if params[:state]
-      @videos = @user.videos.being(params[:state]).paginate(:page => params[:page], 
-                                                     :order => 'created_at DESC', 
+      @videos = @user.videos.being(params[:state]).paginate(:page => params[:page],
+                                                     :order => 'created_at DESC',
                                                      :per_page => 6)
     else
-      @videos = @user.videos.paginate(:page => params[:page], 
-                               :order => 'created_at DESC', 
+      @videos = @user.videos.paginate(:page => params[:page],
+                               :order => 'created_at DESC',
                                :per_page => 6)
-    end  
+    end
   end
 
   # GET /users/new
@@ -66,5 +66,5 @@ class UsersController < ApplicationController
         render :action => "edit"
       end
   end
-  
+
 end

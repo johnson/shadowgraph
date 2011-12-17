@@ -10,12 +10,12 @@
 <hr />
 
 <% # when user has no video uploaded yet
-if @videos.empty? 
-  @videos=Video.find(:all).paginate(:page => params[:page], 
-                               :order => 'created_at DESC', 
+if @videos.empty?
+  @videos=Video.find(:all).paginate(:page => params[:page],
+                               :order => 'created_at DESC',
                                :per_page => 6)
 concat t("user_has_no_video")
-concat '<hr class="space"/>'                               
+concat '<hr class="space"/>'
 end
 %>
 
@@ -24,20 +24,20 @@ end
 
 <% @videos.each do |video| %>
 <div class="prepend-1 span-5">
-  <div class="video_small">  
-    <%= link_to (image_tag video.asset.url(:small), :alt => video.filename), 
+  <div class="video_small">
+    <%= link_to (image_tag video.asset.url(:small), :alt => video.filename),
                 video_path(video) %>
     <br />
     <b>
     <%= link_to truncate(video.title, 28), video_path(video), :class => "video_title" %>
-    </b>                
+    </b>
   </div>
   <div class="prepend-1 alt">
   <%= link_to video.user.login, user_path(video.user) %><%= t("uploaded_at") %> :
-  <br />  
+  <br />
   <%= video.created_at.to_s(:db) %>
   </div>
-  <hr class="space" />  
+  <hr class="space" />
 </div>
 <% end %>
 

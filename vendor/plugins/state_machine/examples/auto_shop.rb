@@ -3,9 +3,9 @@ class AutoShop
     event :tow_vehicle do
       transition :available => :busy
     end
-    
+
     event :fix_vehicle do
-      transition :busy => :available 
+      transition :busy => :available
     end
   end
 end
